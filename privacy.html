@@ -62,8 +62,8 @@
 
 <h1><em>Catchy</em> — privacy</h1>
 <p class="sub">The short version: your phone listens, sends a fingerprint rather
-  than the sound, and keeps audio only where it will ask you to judge it. There
-  are no accounts, and your sets stay on your device.</p>
+  than the sound, and keeps audio only where it will ask you to judge it.
+  Accounts are optional, and your sets stay on your device.</p>
 
 <h2>What stays on your phone</h2>
 <ul>
@@ -88,8 +88,11 @@
     the clips above, and the stretches still waiting to be identified when
     you're offline — those go the moment they are, or with the rest when the
     set's window runs out.</li>
-  <li>No account, no sign-up, no email, no password.</li>
-  <li>No third-party analytics SDK, no advertising, no location.</li>
+  <li>No password. An account is optional (Sign in with Apple or Google),
+    exists only so your share links survive a new phone, and is never
+    required to catch, review, or export.</li>
+  <li>No third-party analytics SDK, no advertising, no location, no
+    contacts.</li>
 </ul>
 
 <h2>What leaves your phone, and when</h2>
@@ -98,6 +101,19 @@
     fingerprint on the device and sends only that — never the audio itself —
     to <span>Apple's Shazam service</span>, the same way the Shazam app works. It identifies
     songs, not you.</li>
+  <li><b>Also while capturing:</b> the lock-screen banner's updates (current
+    song, catch count) pass through Catchy's server on their way to Apple's
+    push system so the banner stays fresh. Passing through — our server logs
+    counts, never songs.</li>
+  <li><b>If you share a night as a link:</b> exactly what the page shows —
+    the tracklist, times, and the name you gave the set — is hosted until you
+    revoke it. Revoking deletes it.</li>
+  <li><b>After a set is reviewed:</b> a capture-health report — counters
+    only, exactly what the in-app Capture Health panel shows (windows sent
+    and matched, pauses, battery, device model) — is shared with the
+    developer to fix capture bugs. Never audio, never song titles, never the
+    set's name. The switch in Profile → Privacy &amp; FAQ turns it off and
+    deletes what was sent.</li>
   <li><b>With no signal, or if recognition fails:</b> that stretch of audio
     waits on your phone until there is a connection to identify it, and is
     deleted the moment it is. That is the price of not losing it.</li>
@@ -124,4 +140,4 @@
 <h2>Questions</h2>
 <p>Email <a href="mailto:ignacio.bassi@gmail.com">ignacio.bassi@gmail.com</a>.</p>
 
-<footer>Catchy · © 2026 Al Tiro LLC · friends &amp; family beta · updated July 2026</footer>
+<footer>Catchy · © 2026 Al Tiro LLC · friends &amp; family beta · updated August 2026</footer>
