@@ -9,17 +9,19 @@
 <style>
   :root {
     color-scheme: dark;
-    --bg: #08080c;
+    --bg: #0b0618;
     --text: #f5f5f7;
     --dim: rgba(245, 245, 247, 0.58);
     --faint: rgba(245, 245, 247, 0.34);
     --accent: #a78bfa;
     --accent-deep: #7c5cf0;
+    --ink: #0b0618;
     --confident: #34d399;
     --review: #fbbf24;
+    --star: #e879f9;
     --unknown: #f87171;
-    --surface: rgba(255, 255, 255, 0.055);
-    --surface-raised: rgba(255, 255, 255, 0.095);
+    --surface: rgba(255, 255, 255, 0.075);
+    --surface-raised: rgba(255, 255, 255, 0.13);
     --line: rgba(255, 255, 255, 0.09);
     --radius-card: 20px;
     --radius-cover: 14px;
@@ -42,7 +44,6 @@
 
     --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
     --page: #0b0b11;
-    --on-accent: #0b0618;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -133,7 +134,7 @@
   .cta {
     display: inline-flex; align-items: center; gap: 8px; margin-top: 28px;
     text-decoration: none; border-radius: 99px; padding: 15px 26px;
-    font-size: 15px; font-weight: 700; color: var(--on-accent);
+    font-size: 15px; font-weight: 700; color: var(--ink);
     background: linear-gradient(135deg, var(--accent), var(--accent-deep));
     box-shadow: 0 8px 28px color-mix(in srgb, var(--accent-deep) 40%, transparent);
   }
@@ -174,7 +175,7 @@
   .avatar {
     width: 32px; height: 32px; border-radius: 99px; flex-shrink: 0;
     display: grid; place-items: center;
-    font-size: 13px; font-weight: 700; color: var(--on-accent);
+    font-size: 13px; font-weight: 700; color: var(--ink);
   }
   .livepill {
     display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0;
@@ -332,7 +333,7 @@
     display: flex; align-items: center; justify-content: center; gap: 8px;
     border: none; border-radius: 99px; font-family: inherit;
     font: var(--font-track-title)/1 var(--sans); padding: 16px 20px; width: 100%;
-    background: linear-gradient(135deg, var(--accent), var(--accent-deep)); color: var(--on-accent);
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep)); color: var(--ink);
   }
   .btn.raised  { background: var(--surface-raised); color: var(--text); }
   .btn.outline { background: transparent; color: var(--dim); border: 1px solid var(--line); }
@@ -1166,14 +1167,14 @@
           <div style="display:flex; align-items:center; gap:var(--space-l);">
             <div style="width:64px; height:64px; border-radius:99px; display:grid; place-items:center;
                         background: linear-gradient(135deg, var(--accent), var(--accent-deep));
-                        color: var(--on-accent);">
+                        color: var(--ink);">
               <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;opacity:.7;">
                 <path d="M3.5 8.4h3.3l1.5-2.2h7.4l1.5 2.2h3.3v10.2H3.5z"/><circle cx="12" cy="13" r="3.4"/>
               </svg>
             </div>
             <div>
               <div class="t-hmedium">You</div>
-              <div class="t-sub" style="color: var(--faint);">@instagram · optional</div>
+              <div class="t-sub" style="color: var(--faint);">@instagram · shown on your profile</div>
             </div>
           </div>
 
@@ -1280,14 +1281,32 @@
           service not answering — that stretch of audio waits on the phone
           until it can be identified, and is deleted the moment it is. That's
           the price of not losing it.</li>
-        <li data-t="privacy.c4"><b>No account today.</b> Capturing, reviewing and exporting need no
-          sign-up, no password and no profile on a server — your sets live on
-          your phone. (The friends features further up would need something to
-          connect people; we'll say so plainly when we get there.)</li>
-        <li data-t="privacy.c5"><b>No analytics SDK, no tracking, no location.</b> The only thing
-          our own server ever sees is a random install ID when you export to
-          Spotify — it exists to stop the shared Spotify account being abused,
-          it's tied to nothing about you, and it resets if you reinstall.</li>
+        <li data-t="privacy.c4"><b>An account is real, and it's for friends.</b> Capturing,
+          reviewing, your library and exporting need no sign-up and no password,
+          and opening a night someone shares with you needs nothing at all.
+          Signing in (Apple or Google) is what backs your friend code, your
+          friends list and your share links, so they survive a new phone — and
+          adding a friend is the one thing that asks for it. Claim a @username
+          and the server holds it — that's how friends find you — along with a
+          display name if you add one, and a profile whose counters you can
+          switch off. Your sets and your audio stay on your phone, apart from
+          the capture diagnostics below.</li>
+        <li data-t="privacy.c5"><b>No analytics SDK, no tracking, no location.</b> Our server does
+          the connecting — friend links, invitations, the pages you share — and
+          never sees your audio, or the name of a night you didn't share (the
+          capture diagnostics below are the one thing a private night sends,
+          as catalog IDs and times). Export to Spotify
+          without your own account and a random install ID goes along, so that
+          shared account can't be abused; it's tied to nothing about you and
+          resets if you reinstall.</li>
+        <li data-t="privacy.c6"><b>Capture diagnostics, which you can switch off.</b> After a
+          night is reviewed, the app sends what its
+          <span>Capture health</span> panel shows:
+          counters, and the per-window recognition events — which catalog
+          tracks were recognized and when, as catalog identifiers and numbers.
+          Never audio, never a recording, never song titles or set names. It
+          exists to fix how nights get recognized. Switching it off deletes
+          what was sent; deleting a night deletes that night's rows.</li>
       </ul>
       <p class="more"><a href="privacy.html" data-t="privacy.more">The full privacy policy →</a></p>
     </div>
@@ -1400,8 +1419,9 @@ const ES = {
   'privacy.c1': '<b>El sonido en sí nunca sale.</b> Tu celular convierte, ahí mismo en el dispositivo, lo que oye en una huella acústica y manda solo eso — nunca el audio — al servicio Shazam de Apple para identificarlo. El audio del que sacó la huella se descarta en el acto.',
   'privacy.c2': '<b>Solo se guarda audio de lo que te vamos a pedir que decidas tú</b> — un clip corto por cada canción de la que no estuvo segura, y por cada momento que no pudo nombrar. Quedan en tu celular, se borran solos cuando terminas de revisar el set (o a los 30 días si nunca lo haces), y salen del dispositivo únicamente si tú decides compartir uno. La única excepción es un clip al que le tocas <em lang=\'en\'>keep clip</em>: ese queda tuyo hasta que lo borres.',
   'privacy.c3': '<b>Cuando no se puede identificar en el momento</b> — sin señal, o con el servicio caído — ese tramo de audio espera en el celular hasta que se pueda resolver, y se borra apenas se resuelve. Ese es el precio de no perderlo.',
-  'privacy.c4': '<b>Hoy no hay cuenta.</b> Capturar, revisar y exportar no requieren registro, ni contraseña, ni un perfil en un servidor — tus sets viven en tu celular. (Lo de amigos, más arriba, necesitaría algo que conecte a las personas; cuando lleguemos ahí lo vamos a decir claramente.)',
-  'privacy.c5': '<b>Sin SDK de analítica de terceros, sin rastreo, sin ubicación.</b> Lo único que ve nuestro propio servidor es un identificador de instalación aleatorio cuando exportas a Spotify — existe para que no abusen de la cuenta de Spotify compartida, no está atado a nada tuyo, y se reinicia si reinstalas.',
+  'privacy.c4': '<b>La cuenta es real, y es para los amigos.</b> Capturar, revisar, tu biblioteca y exportar no requieren registro ni contraseña, y abrir una noche que alguien comparte contigo no requiere nada. Iniciar sesión (Apple o Google) es lo que respalda tu código de amigo, tu lista de amigos y tus links compartidos, para que lleguen a un celular nuevo — y agregar a un amigo es lo único que te la pide. Si eliges un @usuario, el servidor lo guarda — para eso es: así te encuentran tus amigos — igual que el nombre visible si agregas uno, y un perfil con números que puedes apagar. Tus sets y tu audio se quedan en tu celular, salvo los diagnósticos de captura que se explican más abajo.',
+  'privacy.c5': '<b>Sin SDK de analítica de terceros, sin rastreo, sin ubicación.</b> Nuestro servidor se encarga de conectar — los vínculos entre amigos, las invitaciones, las páginas que compartes — y nunca ve tu audio, ni el nombre de una noche que no compartiste (los diagnósticos de captura de abajo son lo único que sale de una noche privada, como identificadores de catálogo y horas). Si exportas a Spotify sin tu propia cuenta, va un identificador de instalación aleatorio para que no abusen de esa cuenta compartida; no está atado a nada tuyo y se reinicia si reinstalas.',
+  'privacy.c6': '<b>Diagnósticos de captura, que puedes apagar.</b> Cuando terminas de revisar una noche, la app manda lo mismo que muestra su panel <em lang=\'en\'>Capture health</em>: los contadores y los eventos de reconocimiento ventana por ventana — qué canciones del catálogo se reconocieron y cuándo, como identificadores de catálogo y números. Nunca audio, nunca una grabación, nunca títulos de canciones ni el nombre del set. Está para arreglar cómo se reconocen las noches. Si lo apagas, se borra lo que ya se mandó; si borras una noche, se borran sus datos.',
   'privacy.more': 'La política de privacidad completa →',
 
   'close.h2': 'Pruébala en la próxima.',

@@ -8,17 +8,19 @@
 <style>
   :root {
     color-scheme: dark;
-    --bg: #08080c;
+    --bg: #0b0618;
     --text: #f5f5f7;
     --dim: rgba(245, 245, 247, 0.58);
     --faint: rgba(245, 245, 247, 0.34);
     --accent: #a78bfa;
     --accent-deep: #7c5cf0;
+    --ink: #0b0618;
     --confident: #34d399;
     --review: #fbbf24;
+    --star: #e879f9;
     --unknown: #f87171;
-    --surface: rgba(255, 255, 255, 0.055);
-    --surface-raised: rgba(255, 255, 255, 0.095);
+    --surface: rgba(255, 255, 255, 0.075);
+    --surface-raised: rgba(255, 255, 255, 0.13);
     --line: rgba(255, 255, 255, 0.09);
     --radius-card: 20px;
     --radius-cover: 14px;
@@ -63,12 +65,15 @@
 <h1><em>Catchy</em> — privacy</h1>
 <p class="sub">The short version: your phone listens, sends a fingerprint rather
   than the sound, and keeps audio only where it will ask you to judge it.
-  Accounts are optional, and your sets stay on your device.</p>
+  Accounts are optional; your sets and audio stay on your device, and the
+  things you deliberately share are listed below.</p>
 
 <h2>What stays on your phone</h2>
 <ul>
-  <li>Your sets, catches, timelines, and library. Stored locally, never uploaded
-    to us.</li>
+  <li>Your sets, catches, timelines, and library — the names, the venues, the
+    artwork, the words. Stored locally. The one thing derived from them that
+    leaves, unless you switch it off, is the capture diagnostics described
+    below: catalog identifiers and times, never names.</li>
   <li><b>Short clips (~20 seconds) for anything that still needs your ear</b> —
     the moments nothing matched, and the songs Catchy named but wasn't sure of.
     They exist so you can listen back and decide during review. They live on
@@ -88,9 +93,12 @@
     the clips above, and the stretches still waiting to be identified when
     you're offline — those go the moment they are, or with the rest when the
     set's window runs out.</li>
-  <li>No password. An account is optional (Sign in with Apple or Google),
-    exists only so your share links survive a new phone, and is never
-    required to catch, review, or export.</li>
+  <li>No password. An account is Sign in with Apple or Google — nothing to fill
+    in, and no email or phone number we ask you for. It is never needed to
+    catch, review, keep your library, or export, and never needed to open a link
+    someone shares with you. It backs your friend code, your friends list and
+    your share links so they survive a new phone — and adding a friend is the
+    one thing that asks for it.</li>
   <li>No third-party analytics SDK, no advertising, no location, no
     contacts.</li>
 </ul>
@@ -108,19 +116,27 @@
   <li><b>If you share a night as a link:</b> exactly what the page shows —
     the tracklist, times, and the name you gave the set — is hosted until you
     revoke it. Revoking deletes it.</li>
-  <li><b>After a set is reviewed:</b> a capture-health report — counters
-    only, exactly what the in-app Capture Health panel shows (windows sent
-    and matched, pauses, battery, device model) — is shared with the
-    developer to fix capture bugs. Never audio, never song titles, never the
-    set's name. The switch in Profile → Privacy &amp; FAQ turns it off and
-    deletes what was sent.</li>
+  <li><b>After a set is reviewed:</b> capture diagnostics — exactly what the
+    in-app <span>Capture health</span>
+    panel shows — are shared with the developer to fix
+    capture bugs. Two things travel: the counters (windows sent and matched,
+    pauses, battery, device model), and the night's per-window recognition
+    events — which catalog tracks were recognized and when, sent as catalog
+    identifiers (Shazam / Apple Music / ISRC) and numbers. Never audio, never
+    a recording, never song titles or artist names, never the set's name.
+    They exist to fix how the app merges and presents what it recognizes.
+    The switch in Profile → Privacy &amp; FAQ turns it off and deletes what
+    was already sent, and deleting a night deletes that night's rows too.</li>
   <li><b>With no signal, or if recognition fails:</b> that stretch of audio
     waits on your phone until there is a connection to identify it, and is
     deleted the moment it is. That is the price of not losing it.</li>
   <li><b>If you export to Spotify:</b> the set's name and its track names.
     What happens next depends on whether you have connected your own Spotify.
-    <b>With your own account connected</b>, the playlist is created private, in
-    your library, and nothing else leaves your phone. <b>Without it</b>, we do
+    <b>With your own account connected</b>, the playlist is created in your
+    library and is <b>public</b>, so the listen link on your share page works
+    for everyone; you can make it private in Spotify, but exporting that night
+    again turns it public once more. Nothing else is sent either way.
+    <b>Without it</b>, we do
     run one small server: it creates the playlist on Catchy's own Spotify
     account and gives you a link to follow — <b>that playlist is public</b>, so
     whatever you named the set is visible to anyone with the link — and a random
@@ -131,6 +147,43 @@
     library, with your permission, on your device.</li>
   <li>Track titles are looked up against Apple's public catalog for artwork and
     previews.</li>
+</ul>
+
+<h2>Friends and your profile — each of these only when you act</h2>
+<ul>
+  <li><b>Adding a friend</b> exchanges codes, not identities: the server stores
+    a content-free link between two random IDs. The nicknames you give friends
+    are typed on your phone and stay on it.</li>
+  <li><b>If you claim a @username</b>, the server holds it — that is the point:
+    it is how friends find you. Same for the display name if you add one. You
+    are findable by search unless you turn that off in the app; either way,
+    someone finding you only ever sends a request you approve. This is the one
+    place we hold a name, and only because you chose one.</li>
+  <li><b>Your profile</b> carries counters (sets, tracks, hours, favourites) and
+    they are visible to friends unless you switch them off, which also deletes
+    what was published. The Top sets you pin ride the profile too — they are
+    nights you already chose to share, so their pages are hosted the same way.
+    The audio and the full record of each night stay on your phone.</li>
+  <li><b>Sharing a set with friends</b> is per-set and explicit: exactly what
+    the shared page shows — the tracklist, times, and the set's name — becomes
+    visible in their app until you unshare it. Your profile shows friends only
+    the name, venue, and date of sets you have chosen to share.</li>
+  <li><b>Adding friends to a set</b> sends each one an invitation, as IDs only;
+    accepting places that set in their app. Declining leaves no trace.</li>
+  <li><b>Reactions and song IDs</b> on a shared set live on the server while it
+    is shared: a tap, or the title and artist a friend typed. Anyone who can
+    open a shared set sees who reacted to it — names, never counts — and your
+    @username can appear there to people who follow the same night without
+    being your friend. Reactions disappear with the set when it is
+    unshared.</li>
+  <li><b>If you allow notifications</b>, this phone's push address is stored so
+    a night you follow can reach you. Storing it does not send you anything:
+    only following a set makes you a recipient. The pushes carry no songs and
+    no names. Turning off Following in the app removes the address.</li>
+  <li><b>Letting friends see you are out</b> is off unless you turn it on for
+    that set. They see only that — no venue, no place — and it disappears when
+    the set ends. If a friend asks to join you and you accept, the venue you
+    type goes to that one friend alone and dies with the set too.</li>
 </ul>
 
 <h2>Changes</h2>
