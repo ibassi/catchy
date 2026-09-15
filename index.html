@@ -41,6 +41,11 @@
     --font-chip: 500 12.5px;
     --font-time: 400 12px;
     --font-tab: 600 10.5px;
+    --font-display-title: 900 34px;
+    --font-display-venue: 700 13.5px;
+    --font-display-meta: 600 11px;
+    --font-display-state: 700 10px;
+    --font-display-person-name: 900 28px;
 
     --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
     --page: #0b0b11;
@@ -104,6 +109,17 @@
     font-size: 16px; font-weight: 700; letter-spacing: -.015em; color: var(--text); text-wrap: balance;
   }
   .versus b { color: var(--accent); font-weight: 700; }
+  /* the one line about money, directly under the versus line: what stays
+     free, and what the paid tier adds. Quieter than the versus, louder
+     than the step chips. */
+  .versus-sub { position: relative; margin: 10px auto 0; max-width: 48ch; font-size: 13.5px; color: var(--dim); text-wrap: pretty; }
+  .versus-sub b { color: var(--text); font-weight: 600; }
+  .pro {
+    display: inline-block; font: var(--font-display-state)/1 var(--sans);
+    letter-spacing: .09em; text-transform: uppercase; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border-radius: 99px; padding: 3px 6px; vertical-align: 1px;
+  }
 
   /* the loop — each step jumps to its section */
   .loop { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 36px 0 0; }
@@ -151,60 +167,42 @@
   .shot-head p { font-size: 15px; color: var(--dim); max-width: 48ch; margin: 12px auto 0; text-wrap: pretty; }
   .shot-head p strong { color: var(--text); font-weight: 600; }
   .stage { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; align-items: flex-start; }
-
-  /* The friends section shows two phones: what ships, and what it becomes.
-     The sketch is dashed and tagged so it can never be read as a screenshot. */
-  /* Two phones, each labelled, so the sketch can never be read as a screenshot. */
   @media (min-width: 920px) {
     .stage.duo { width: 880px; margin-left: calc(50% - 440px); }
   }
-  .pane { position: relative; padding: 30px 10px 10px; border: 1px solid transparent; border-radius: 60px; }
-  .pane.sketch { border-style: dashed; border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
-  .pane.sketch .phone { opacity: .92; }
+  .pane { position: relative; padding: 30px 10px 10px; }
   .pane-tag {
-    position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-    font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-    background: var(--page); padding: 0 10px; white-space: nowrap; color: var(--accent);
+    position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+    font: var(--font-display-state)/1 var(--sans); letter-spacing: .12em; text-transform: uppercase;
+    background: var(--page); padding: 0 10px; white-space: nowrap; color: var(--faint);
   }
-  .pane-tag.now { color: var(--confident); }
   .stage-note {
     max-width: 52ch; margin: 22px auto 0; text-align: center;
     font-size: 13px; color: var(--faint); line-height: 1.5; text-wrap: pretty;
   }
 
+  /* ProfileAvatar: the disc a person wears everywhere they appear — the
+     face they picked, on the hue their handle hashes to. */
   .avatar {
-    width: 32px; height: 32px; border-radius: 99px; flex-shrink: 0;
-    display: grid; place-items: center;
-    font-size: 13px; font-weight: 700; color: var(--ink);
+    width: 34px; height: 34px; border-radius: 99px; flex-shrink: 0;
+    display: grid; place-items: center; font-size: 15px;
+    border: 1px solid var(--line); background: var(--surface);
   }
-  .livepill {
-    display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0;
-    font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
-    padding: 4px 11px; border-radius: 99px; color: var(--confident);
-    background: color-mix(in srgb, var(--confident) 9%, transparent);
-    border: 1px solid color-mix(in srgb, var(--confident) 30%, transparent);
-  }
-  .livepill .dot { width: 6px; height: 6px; border-radius: 99px; background: var(--confident); }
-
-  /* One list style for everything the page asserts — under each screen, and
-     in the privacy card. A green tick means "this is in your hands today";
-     the accent arrow (.soon) means "this is the sketch", so the two can never
-     be mistaken for each other. */
-  .claims {
-    margin: 26px auto 0; max-width: 52ch;
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--radius-card); padding: 4px 22px;
-  }
+  .avatar.h1 { background: color-mix(in srgb, var(--star) 22%, transparent); }
+  .avatar.h2 { background: color-mix(in srgb, var(--confident) 18%, transparent); }
+  .avatar.h3 { background: color-mix(in srgb, var(--accent) 24%, transparent); }
+  .avatar.h4 { background: color-mix(in srgb, var(--review) 18%, transparent); }
+  .avatar.big { width: 44px; height: 44px; font-size: 19px; }
+  .claims { margin: 26px auto 0; max-width: 52ch; border-top: .5px solid var(--line); }
   .claims li {
     position: relative; padding: 14px 2px 14px 28px;
     font-size: 14px; color: var(--dim); line-height: 1.5; text-wrap: pretty;
+    border-bottom: .5px solid var(--line);
   }
-  .claims li + li { border-top: 1px solid var(--line); }
   .claims li::before {
     content: "✓"; position: absolute; left: 2px; top: 14px;
     color: var(--confident); font-weight: 700;
   }
-  .claims.soon li::before { content: "→"; color: var(--accent); }
   .claims b { color: var(--text); font-weight: 600; }
   .claims em { font-style: italic; color: var(--faint); }
 
@@ -259,10 +257,17 @@
     font: var(--font-section-label)/1 var(--sans); letter-spacing: .8px;
     color: var(--faint); padding: var(--space-xl) 0 var(--space-m);
   }
-  .section-label > span:first-child { text-transform: uppercase; }
+  .section-label > span.lab { text-transform: uppercase; }
   .section-label .count {
-    background: var(--surface-raised); border-radius: 99px; padding: 2px 9px;
-    font-size: 11px; color: var(--dim); letter-spacing: 0;
+    font: 700 13px/1 var(--sans); color: var(--dim); letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  /* the ruled group header (the review page's `.ghead`): hairline above
+     and below, the mark leading, the verbs riding the trailing edge. */
+  .section-label.band {
+    min-height: 48px; padding: var(--space-m) 0;
+    border-top: .5px solid var(--line); border-bottom: .5px solid var(--line);
+    margin-top: var(--space-l);
   }
   .section-label .act { margin-left: auto; display: flex; gap: var(--space-m); color: var(--accent); }
   .section-label .act.plain { font: 600 12px/1 var(--sans); letter-spacing: 0; }
@@ -271,29 +276,123 @@
     background: var(--surface); border: 1px solid var(--line);
     border-radius: var(--radius-card); padding: var(--space-l);
   }
-  .card.rows { padding: var(--space-m); }
+  .card.rows { background: none; border: none; border-radius: 0; padding: 0; }
   .card.rows > .row + .row { border-top: .5px solid var(--line); }
   .card.amber { border-color: color-mix(in srgb, var(--review) 30%, transparent); }
   .card.red   { border-color: color-mix(in srgb, var(--unknown) 25%, transparent); }
 
-  .chiprow { display: flex; gap: var(--space-s); overflow: hidden; padding-top: var(--space-m); }
-  .chip {
-    display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 99px;
-    padding: 6px 12px; font: var(--font-chip)/1.2 var(--sans); color: var(--dim);
-  }
   .dot { width: 8px; height: 8px; border-radius: 99px; flex-shrink: 0; }
-  .dot.g { background: var(--confident); box-shadow: 0 0 4px color-mix(in srgb, var(--confident) 60%, transparent); }
-  .dot.a { background: var(--review);    box-shadow: 0 0 4px color-mix(in srgb, var(--review) 60%, transparent); }
-  .dot.u { background: var(--unknown);   box-shadow: 0 0 4px color-mix(in srgb, var(--unknown) 60%, transparent); }
 
-  .pill {
-    display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0;
-    font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
-    padding: 4px 11px; border-radius: 99px;
+  /* ------------------------------------------------------ the register */
+  .sline { width: 3px; border-radius: 1.5px; flex-shrink: 0; height: 14px; }
+  .sline.g { background: var(--confident); box-shadow: 0 1px 6px color-mix(in srgb, var(--confident) 45%, transparent); }
+  .sline.a { background: var(--review);    box-shadow: 0 1px 6px color-mix(in srgb, var(--review) 40%, transparent); }
+  .sline.u { background: var(--unknown);   box-shadow: 0 1px 6px color-mix(in srgb, var(--unknown) 40%, transparent); }
+  .sline.p { background: var(--accent);    box-shadow: none; }
+  .sline.sm { height: 8px; }
+  .sline.chip { height: 10px; box-shadow: none; }
+  .eyeb {
+    font: var(--font-display-state)/1 var(--sans); letter-spacing: .8px;
+    text-transform: uppercase; color: var(--faint);
   }
-  .pill.amber { color: var(--review);    background: color-mix(in srgb, var(--review) 9%, transparent);    border: 1px solid color-mix(in srgb, var(--review) 30%, transparent); }
-  .pill.green { color: var(--confident); background: color-mix(in srgb, var(--confident) 9%, transparent); border: 1px solid color-mix(in srgb, var(--confident) 30%, transparent); }
+
+  /* the ruled counters band — RuledStatBand: hairline above and below,
+     one hairline between columns, uppercase label over a tabular figure.
+     The set page's stats, the review page's triad, the Profile's four. */
+  .statband {
+    display: flex; margin-top: 13px;
+    border-top: .5px solid var(--line); border-bottom: .5px solid var(--line);
+  }
+  .statband > div { flex: 1; min-width: 0; padding: 10px 0 10px 14px; }
+  .statband > div:first-child { padding-left: 2px; }
+  .statband > div + div { border-left: .5px solid var(--line); }
+  .statband .k { display: flex; align-items: center; gap: 5px; }
+  .statband .k .eyeb { white-space: nowrap; }
+  .statband.four > div { padding-left: 10px; }
+  .statband.four .k .eyeb { font-size: 9px; letter-spacing: .4px; }
+  .statband .v {
+    font: 800 22px/1 var(--sans); letter-spacing: -.02em; margin-top: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .statband .v small { font: 600 11.5px/1 var(--sans); color: var(--dim); margin-left: 2px; }
+
+  /* the identity lockup — LockupBlock: the title in display caps, the
+     venue tracked under it, the facts line in the eyebrow voice, and the
+     state as a WORD in the top corner (the pill is retired). */
+  .lockup { position: relative; margin-top: var(--space-s); padding-right: 96px; }
+  .lockup h3 {
+    font: var(--font-display-title)/0.98 var(--sans); letter-spacing: .005em;
+    text-transform: uppercase; margin: 0;
+  }
+  .lockup .venue {
+    font: var(--font-display-venue)/1.2 var(--sans); letter-spacing: .15em;
+    text-transform: uppercase; color: var(--dim); margin-top: 6px;
+  }
+  .lockup .meta {
+    display: flex; align-items: center; gap: 7px; margin-top: 8px;
+    font: var(--font-display-meta)/1 var(--sans); letter-spacing: .11em;
+    text-transform: uppercase; color: var(--faint); font-variant-numeric: tabular-nums;
+  }
+  .lockup .meta .mstar { display: inline-flex; align-items: center; gap: 3px; color: var(--star); letter-spacing: .02em; }
+  .lockup .state {
+    position: absolute; right: 0; top: 4px;
+    font: var(--font-display-state)/1 var(--sans); letter-spacing: .9px; text-transform: uppercase;
+  }
+  .lockup .state.done { color: var(--confident); }
+  .lockup .state.owed { color: var(--review); }
+
+  /* the door row — the roster-row idiom: glyph, verb, one trailing seat */
+  .door { display: flex; align-items: center; gap: var(--space-m); padding: 12px 0; min-height: 44px; }
+  .door + .door { border-top: .5px solid var(--line); }
+  .door .g { width: 20px; flex-shrink: 0; text-align: center; color: var(--dim); font-size: 14px; }
+  .door .w { flex: 1; min-width: 0; font: var(--font-body)/1.25 var(--sans); }
+  .door .w small { display: block; font: var(--font-track-sub)/1.3 var(--sans); color: var(--dim); margin-top: 2px; }
+  .door .val { font: var(--font-track-sub)/1 var(--sans); color: var(--dim); }
+  .door .val.on { font: var(--font-display-state)/1 var(--sans); letter-spacing: .8px; text-transform: uppercase; color: var(--confident); }
+  .door .chev { color: var(--faint); font-size: 14px; }
+  .yin {
+    display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+    font: 600 11px/1 var(--sans); color: var(--dim);
+    border: 1px solid var(--line); border-radius: 99px; padding: 3px 9px;
+  }
+
+  /* the ⋯ menu, drawn open — verbs as WORDS */
+  .actmenu {
+    position: absolute; right: 14px; top: 84px; z-index: 20; width: 190px;
+    background: var(--bg); border: 1px solid var(--line);
+    border-radius: var(--radius-art); padding: 0 12px;
+    box-shadow: 0 14px 34px rgba(0,0,0,.55);
+  }
+  .actmenu .r { display: flex; align-items: center; gap: 10px; min-height: 42px; font: 600 14px/1 var(--sans); }
+  .actmenu .r + .r { border-top: .5px solid var(--line); }
+  .actmenu .r span { margin-left: auto; color: var(--dim); font-size: 13px; }
+
+  /* the Activity rows — the bell's anatomy: sender disc, the sentence,
+     the clock in the trailing seat, unread as the leading line mark */
+  .brow { display: flex; align-items: flex-start; gap: var(--space-m); padding: 11px 0; position: relative; }
+  .brow + .brow { border-top: .5px solid var(--line); }
+  .brow .mk { position: absolute; left: -10px; top: 17px; }
+  .brow .m { flex: 1; min-width: 0; }
+  .brow .l { font: var(--font-body)/1.3 var(--sans); }
+  .brow .l b { font-weight: 700; }
+  .brow .q {
+    font: var(--font-track-sub)/1.35 var(--sans); color: var(--dim); margin-top: 4px;
+    padding-left: 9px; border-left: 2px solid var(--line);
+  }
+  .brow .verbs { display: flex; gap: 18px; margin-top: 8px; font: 700 13px/1 var(--sans); color: var(--accent); }
+  .brow .verbs .quiet { color: var(--dim); font-weight: 600; }
+  .brow .clk { font: var(--font-time)/1 var(--sans); color: var(--faint); font-variant-numeric: tabular-nums; flex-shrink: 0; padding-top: 3px; }
+
+  /* the triage row's trailing block — R7's anatomy: [mark · clock] over
+     [Skip · Keep], the clock hard in its reserved column, the verbs as
+     words rather than two grey capsules. */
+  .trail { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+  .trail .tr1 { display: flex; align-items: center; gap: 7px; }
+  .trail .tr2 { display: flex; gap: 12px; font: 600 12px/1 var(--sans); }
+  .trail .tr2 .skip { color: var(--dim); }
+  .trail .tr2 .keep { color: var(--confident); }
+  .trail .tr2 .undone { color: var(--faint); font-weight: 500; }
+  .cliprow { display: flex; gap: var(--space-s); padding: 0 0 var(--space-s) 46px; }
 
   .art {
     width: 44px; height: 44px; border-radius: var(--radius-art); flex-shrink: 0;
@@ -315,7 +414,7 @@
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .row .idx { font: var(--font-time)/1 var(--sans); color: var(--faint); width: 22px; text-align: right; font-variant-numeric: tabular-nums; }
-  .row .stamp { font: var(--font-time)/1 var(--sans); color: var(--faint); font-variant-numeric: tabular-nums; width: 38px; text-align: right; }
+  .row .stamp { font: var(--font-time)/1 var(--sans); color: var(--faint); font-variant-numeric: tabular-nums; width: 56px; text-align: right; }
 
   /* confidence bubble — fill only, no border (ListenCard / catch sheet) */
   .bubble { flex-shrink: 0; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 99px; }
@@ -387,11 +486,10 @@
   .livehead .live { display: inline-flex; align-items: center; gap: 6px; font: 700 12.5px/1 var(--sans); letter-spacing: .5px; color: var(--confident); }
   .livehead .live .dot { background: var(--confident); box-shadow: 0 0 4px color-mix(in srgb, var(--confident) 70%, transparent); }
   .livehead .elapsed { margin-left: auto; font: var(--font-time)/1 var(--sans); color: var(--dim); font-variant-numeric: tabular-nums; }
-
   .banner {
-    display: flex; gap: var(--space-m); align-items: flex-start; margin-top: var(--space-m);
-    background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-    border-radius: var(--radius-cover); padding: var(--space-m);
+    display: flex; gap: var(--space-m); align-items: flex-start;
+    margin-top: var(--space-m); padding: var(--space-m) 0;
+    border-top: .5px solid var(--line); border-bottom: .5px solid var(--line);
   }
   .banner .ic { color: var(--accent); font-size: 15px; line-height: 1.2; }
   .banner .t { font: 600 12.5px/1.25 var(--sans); }
@@ -467,30 +565,30 @@
   .statcard .brand { font-size: 3.7cqw; font-weight: 700; color: color-mix(in srgb, var(--text) 85%, transparent); }
   .statcard .since { margin-left: auto; font-size: 2.8cqw; color: color-mix(in srgb, var(--text) 40%, transparent); }
   .statcard .body { display: flex; gap: 3cqw; flex: 1; min-height: 0; }
-  .statcard .tiles { display: flex; flex-direction: column; gap: 1.5cqw; width: 43.5cqw; flex-shrink: 0; min-height: 0; }
-  .statcard .tile {
-    flex: 1; border-radius: 2.6cqw; padding: 0 3cqw;
-    background: color-mix(in srgb, var(--text) 4.5%, transparent);
-    border: 2px solid color-mix(in srgb, var(--accent) 18%, transparent);
-    display: flex; align-items: baseline; gap: 2cqw;
+  .statcard .tiles {
+    display: flex; flex-direction: column; width: 47cqw; flex-shrink: 0; min-height: 0;
+    border-top: .5px solid color-mix(in srgb, var(--text) 14%, transparent);
   }
-  .statcard .tile b { font-size: 7.8cqw; font-weight: 800; letter-spacing: -.02em; }
-  .statcard .tile span { font-size: 3.15cqw; font-weight: 500; color: color-mix(in srgb, var(--text) 60%, transparent); }
+  .statcard .tile {
+    flex: 1; display: flex; align-items: baseline; justify-content: space-between; gap: 2cqw;
+    border-bottom: .5px solid color-mix(in srgb, var(--text) 14%, transparent);
+  }
+  .statcard .tile b { font-size: 7.8cqw; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .statcard .tile span {
+    font-size: 2.7cqw; font-weight: 700; letter-spacing: .16cqw; text-transform: uppercase;
+    color: color-mix(in srgb, var(--text) 58%, transparent);
+  }
   .statcard .mosaic { flex: 1; min-width: 0; display: flex; align-items: flex-end; gap: 1.4cqw; }
   .statcard .mosaic i { flex: 1; min-width: 0; display: flex; flex-direction: column-reverse; gap: .28cqw; align-self: stretch; }
   .statcard .mosaic i em { display: block; border-radius: .46cqw; flex-shrink: 0; }
   .statcard .foot { font-size: 2.8cqw; font-weight: 600; color: color-mix(in srgb, var(--accent) 80%, transparent); margin-top: 3cqw; }
 
   /* -------------------------------------------------------------- extras */
-  .next { margin-top: 22px; display: grid; gap: 8px; }
-  .next div {
-    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-cover);
-    padding: 12px 14px; font-size: 13.5px; color: var(--dim); line-height: 1.4;
-  }
-  .next div b { color: var(--text); font-weight: 600; }
-
   .privacy { margin: 76px 0 0; }
-  .privacy .card { padding: 24px 22px; }
+  .privacy .card {
+    background: none; border: none; border-radius: 0; padding: 26px 0 0;
+    border-top: .5px solid var(--line);
+  }
   .privacy h2 { font-size: 23px; font-weight: 800; letter-spacing: -.025em; text-align: center; text-wrap: balance; }
   .privacy .sub { text-align: center; font-size: 14px; color: var(--dim); margin: 8px auto 18px; max-width: 42ch; }
   .privacy .more { text-align: center; margin-top: 16px; font-size: 13px; }
@@ -530,9 +628,11 @@
       else's aux — start <strong>Catchy</strong> when it starts. It listens
       along and names what it hears, hour after hour, and is honest about
       the bits it couldn't. Afterwards the whole thing is yours: a tracklist,
-      a timeline of what played, and a playlist to send your friends.
+      a timeline of what played, and a card you can send your friends.
     </p>
     <p class="versus" data-t="hero.versus">Shazam catches <b>one song</b>. Catchy catches <b>everything that played</b>.</p>
+    <p class="versus-sub" data-t="hero.pro"><b>Capturing a set, reviewing it and sharing it stay free. Always.</b>
+      Catchy Pro adds Insights, Apple Music export and capture with no signal.</p>
 
     <nav class="loop">
       <a class="step" href="#catch">
@@ -544,8 +644,8 @@
         <div class="d" data-t="step2.d">settle the maybes, whenever</div><div class="go" data-t="step.go">see it →</div>
       </a>
       <a class="step" href="#playlist">
-        <div class="n">3</div><div class="t" data-t="step3.t">Playlist</div>
-        <div class="d" data-t="step3.d">Spotify or Apple Music</div><div class="go" data-t="step.go">see it →</div>
+        <div class="n">3</div><div class="t" data-t="step3.t">Set</div>
+        <div class="d" data-t="step3.d">the whole night, in order</div><div class="go" data-t="step.go">see it →</div>
       </a>
       <a class="step" href="#share">
         <div class="n">4</div><div class="t" data-t="step4.t">Share</div>
@@ -554,8 +654,9 @@
     </nav>
 
     <nav class="loop-more">
-      <a href="#friends" data-t="more.friends">Friends — what's coming next</a>
+      <a href="#friends" data-t="more.friends">Friends &amp; shared sets</a>
       <a href="#you" data-t="more.you">Your profile</a>
+      <a href="#pro" data-t="more.pro">What Pro adds</a>
       <a href="#privacy" data-t="more.privacy">What it keeps</a>
     </nav>
 
@@ -568,7 +669,7 @@
       <div class="ctx" data-t="catch.ctx">step <b>1</b> · while the music is playing</div>
       <h2 data-t="catch.h2">Start it once, then tap for what matters.</h2>
       <p data-t="catch.p"><strong>Tap the disc for any song you have to have</strong> — that's
-         the catch that always lands, and it works straight from the lock
+         the one it answers on the spot, and it works straight from the lock
          screen without unlocking. In between, leave the phone where it can
          hear and it keeps adding what it can pick up on its own. Anything it
          can't name is still marked, with the moment saved, so nothing
@@ -605,39 +706,42 @@
           </div>
 
           <div class="section-label">
-            <span>Caught this set</span>
+            <span class="lab">Caught this set</span>
             <span class="act">+ Add</span>
           </div>
-          <div class="card rows">
+                    <div class="card rows">
             <div class="row">
+              <span class="sline g"></span>
               <div class="art" style="background-image: url(art/onb-inthisbih.jpg);"></div>
               <div class="meta"><div class="t">In This Bih'</div><div class="s">Chris Lorenzo &amp; Kah-Lo</div></div>
-              <span class="dot g"></span><span class="stamp">1:31</span>
+              <span class="stamp">1:31 AM</span>
             </div>
             <div class="row">
+              <span class="sline a"></span>
               <div class="art" style="background-image: url(art/onb-palm.jpg);"></div>
               <div class="meta"><div class="t">palm of my hands (Odd Mob Remix)</div><div class="s">John Summit &amp; venbee</div></div>
-              <span class="dot a"></span><span class="stamp">1:26</span>
+              <span class="stamp">1:26 AM</span>
             </div>
             <div class="row">
+              <span class="sline g"></span>
               <div class="art" style="background-image: url(art/onb-carcrash.jpg);"></div>
               <div class="meta"><div class="t">car crash</div><div class="s">jigitz</div></div>
-              <span class="dot g"></span><span class="stamp">1:19</span>
+              <span class="stamp">1:19 AM</span>
             </div>
           </div>
-          <div style="padding: 10px 4px 0; font: var(--font-chip)/1.3 var(--sans); color: var(--dim);"><span style="color: var(--unknown);">?</span> <span>1 Unknown moment</span> <span style="color: var(--faint); font-size: 9px;">⌄</span></div>
+          <div style="display:flex; align-items:center; gap:6px; min-height:44px; border-top:.5px solid var(--line); font: var(--font-chip)/1.3 var(--sans); color: var(--dim);"><span style="color: var(--unknown); font-weight:700;">?</span> <span>1 Unknown moment</span> <span style="color: var(--faint); font-size: 9px;">⌄</span></div>
         </div>
 
         <div class="dock">
+                    <div class="pair" style="min-height:44px; align-items:center;">
+            <span class="clip-pill" style="flex:0 1 auto; white-space:nowrap; padding:10px 12px;">◎ Pin the venue</span>
+            <span class="clip-pill" style="flex:0 1 auto; white-space:nowrap; padding:10px 12px;">＋ Invite</span>
+          </div>
           <div class="pair">
             <button class="btn raised">Pause</button>
             <button class="btn outline">End</button>
           </div>
-          <div class="note">
-            <span>pocket catches are best-effort — tap for the songs that matter.</span><br>
-            <span>audio is matched live — kept only where you'll be asked to judge it</span>
-          </div>
-        </div>
+                  </div>
 
         <div class="tabbar">
           <span class="tab"><span class="glyph">♫</span>Library</span>
@@ -664,10 +768,10 @@
         video and the camera takes the microphone, so the set parks itself and
         picks back up when you come back.</li>
       <li data-t="catch.c2"><b>There's a <em>Catch now</em> button on the lock screen.</b> Hear something
-        you need the name of, press it without unlocking, and roughly fifteen
+        you need the name of, press it without unlocking, and about ten
         seconds later it has an answer.</li>
-      <li data-t="catch.c3"><b>No signal is fine.</b> It keeps collecting and names everything
-        the moment you're back online — <em>No service — still capturing</em>.</li>
+      <li data-t="catch.c3"><b>No signal is fine.</b>&nbsp;<span class="pro">Pro</span> It keeps collecting and names everything
+        the moment you're back online — <em>No service — still capturing</em>. Capture with no signal is part of Catchy Pro.</li>
       <li data-t="catch.c4"><b>When it misses, it says so</b> — <em>too muffled to name — try it out of your pocket</em>
         — instead of pretending it heard nothing.</li>
     </ul>
@@ -698,19 +802,20 @@
             <span class="more">⋯</span>
           </div>
 
-          <div class="t-hsub">Saturday, Jul 18</div>
-          <div style="display:flex; align-items:center; gap:var(--space-m); margin-top:2px;">
-            <div class="t-hlarge">Saturday night</div>
-            <span class="pill amber">needs review</span>
+                    <div class="lockup">
+            <span class="state owed">Needs review</span>
+            <h3>Saturday</h3>
+            <div class="venue">Public Records</div>
+            <div class="meta"><span>Jul 18</span></div>
+                        <div class="meta" style="margin-top:6px; opacity:.5;">☆</div>
           </div>
-          <div class="chiprow">
-            <span class="chip">3h 50m</span>
-            <span class="chip"><span class="dot g"></span><span>Confident</span> 29</span>
-            <span class="chip"><span class="dot a"></span><span>Needs review</span> 6</span>
-            <span class="chip"><span class="dot u"></span><span>Unknown</span> 3</span>
+                    <div class="statband four">
+            <div><div class="k"><span class="eyeb">Length</span></div><div class="v">3h 50<small>m</small></div></div>
+            <div><div class="k"><span class="sline g sm"></span><span class="eyeb">Confident</span></div><div class="v">29</div></div>
+            <div><div class="k"><span class="sline a sm"></span><span class="eyeb">Needs review</span></div><div class="v">6</div></div>
+            <div><div class="k"><span class="sline u sm"></span><span class="eyeb">Unknown</span></div><div class="v">3</div></div>
           </div>
 
-          <div class="section-label"><span>Your set</span></div>
           <div class="timeline">
             <div class="bar">
               <div class="seg g" style="flex:5"></div><div class="seg g" style="flex:3"></div>
@@ -726,8 +831,9 @@
             <button class="btn">Finish review ✓</button>
           </div>
 
-          <div class="section-label">
-            <span>Needs review</span>
+                    <div class="section-label band">
+            <span class="sline a"></span>
+            <span class="lab">Needs review</span>
             <span class="count">6</span>
             <span class="act plain">
               <span>Keep all</span>
@@ -735,68 +841,68 @@
             </span>
           </div>
 
-          <div class="card amber" style="margin-bottom:var(--space-m);">
-            <div class="row" style="padding-top:0;">
+          <div class="card rows">
+            <div class="row">
+              <span class="sline a"></span>
               <div class="art" style="background-image: url(art/onb-carcrash.jpg);"></div>
-              <div class="meta"><div class="t">car crash</div><div class="s">jigitz · 1:19 AM</div></div>
-              <span class="bubble amber">66%</span>
+              <div class="meta"><div class="t">car crash</div><div class="s">jigitz</div></div>
+              <div class="trail">
+                <div class="tr1"><span class="stamp">1:19 AM</span></div>
+                <div class="tr2"><span class="skip">Skip</span><span class="keep">Keep</span></div>
+              </div>
             </div>
-            <div style="display:flex; gap:var(--space-s); margin-top:var(--space-m);">
-              <span class="clip-pill">▶ Your clip</span>
-              <span class="clip-pill">▶ Catchy's guess</span>
+                        <div class="cliprow" style="padding-left:24px; gap:10px;">
+              <span class="clip-pill" style="white-space:nowrap; padding:11px 6px;">▶ Your clip</span>
+              <span class="clip-pill" style="white-space:nowrap; padding:11px 6px;">▶ Catchy's guess</span>
             </div>
-            <div style="display:flex; gap:var(--space-s); margin-top:var(--space-s);">
-              <button class="btn raised small" style="flex:1;">Skip</button>
-              <button class="btn raised small" style="flex:1;">Keep</button>
-            </div>
-          </div>
-
-          <div class="card" style="margin-bottom:var(--space-m);">
-            <div class="row muted" style="padding-top:0;">
+            <div class="row">
+              <span class="sline a"></span>
               <div class="art amber"></div>
-              <div class="meta"><div class="t">Pressure (Extended Mix)</div><div class="s">Kolter · 12:44 AM</div></div>
+              <div class="meta"><div class="t">Pressure (Extended Mix)</div><div class="s">Kolter</div></div>
+              <div class="trail">
+                <div class="tr1"><span class="stamp">12:44 AM</span></div>
+                <div class="tr2"><span class="skip">Skip</span><span class="keep">Keep</span></div>
+              </div>
             </div>
-            <div style="display:flex; gap:var(--space-s); margin-top:var(--space-m);">
-              <button class="btn raised small" style="flex:1; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 40%, transparent);">Skip</button>
-              <button class="btn raised small" style="flex:1;">Keep</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="row" style="padding-top:0;">
+                        <div class="row muted">
+              <span class="sline" style="background: var(--faint);"></span>
               <div class="art" style="background-image: url(art/onb-wakemeup.jpg);"></div>
-              <div class="meta"><div class="t">Wake Me Up</div><div class="s">Avicii · 11:58 PM</div></div>
-              <span class="bubble amber">71%</span>
-            </div>
-            <div style="display:flex; gap:var(--space-s); margin-top:var(--space-m);">
-              <button class="btn raised small" style="flex:1;">Skip</button>
-              <button class="btn small" style="flex:1;">Keep</button>
+              <div class="meta"><div class="t">Wake Me Up</div><div class="s">Avicii</div></div>
+              <div class="trail">
+                <div class="tr1"><span class="stamp">11:58 PM</span></div>
+                <div class="tr2"><span class="undone">Skipped · Keep</span></div>
+              </div>
             </div>
           </div>
 
-          <div class="section-label">
-            <span>Confident</span>
+          <div class="section-label band">
+            <span class="sline g"></span>
+            <span class="lab">Confident</span>
             <span class="count">29</span>
           </div>
           <div class="card rows">
             <div class="row">
+              <span class="sline g"></span>
               <div class="art" style="background-image: url(art/onb-inthisbih.jpg);"></div>
               <div class="meta"><div class="t">In This Bih'</div><div class="s">Chris Lorenzo &amp; Kah-Lo</div></div>
-              <span class="circ on">★</span><span class="stamp">1:31</span>
+              <span class="circ on">★</span><span class="stamp">1:31 AM</span>
             </div>
             <div class="row">
+              <span class="sline g"></span>
               <div class="art" style="background-image: url(art/onb-palm.jpg);"></div>
               <div class="meta"><div class="t">palm of my hands (Odd Mob Remix)</div><div class="s">John Summit &amp; venbee</div></div>
-              <span class="circ">☆</span><span class="stamp">12:58</span>
+              <span class="circ">☆</span><span class="stamp">12:58 AM</span>
             </div>
           </div>
 
-          <div class="section-label">
-            <span>Unknown</span>
+          <div class="section-label band">
+            <span class="sline u"></span>
+            <span class="lab">Unknown</span>
             <span class="count">3</span>
           </div>
-          <div class="card rows red">
+          <div class="card rows">
             <div class="row" style="align-items:flex-start;">
+              <span class="sline u" style="margin-top:6px;"></span>
               <div class="art q">?</div>
               <div class="meta">
                 <div class="t" style="color: var(--unknown);">Unknown moment</div>
@@ -847,10 +953,13 @@
       <div class="ctx" data-t="playlist.ctx">step <b>3</b> · the set, kept</div>
       <h2 data-t="playlist.h2">Everything that played, in order.</h2>
       <p data-t="playlist.p">Each session becomes a set: the tracklist in order, a timeline you can
-         drag a finger across to see what was playing when, and
-         <strong>one tap to a playlist</strong> in Spotify or Apple Music.
-         Songs you loved get a heart and land in your library with the set
-         still attached to them.</p>
+         drag a finger across to see what was playing when, and the ⋯ menu
+         carrying the verbs as words — including
+         <em>send a set
+         straight to your own Apple Music library</em>, once the set is
+         reviewed. That one is part of Catchy Pro. Every song you keep lands
+         in your library on its own, with the set it came from still attached.
+         The ★ is for the ones that were the night.</p>
     </div>
     <div class="stage">
       <div class="phone" lang="en">
@@ -859,25 +968,42 @@
         <div class="screen with-tabs">
 
           <div class="navbar">
-            <span class="back">‹</span><span class="title">Set</span><span class="more">⋯</span>
+            <span class="back">‹</span><span class="title">Set</span><span class="more" style="color: var(--accent);">⋯</span>
           </div>
 
-          <div class="t-hsub">Saturday, Jul 18</div>
-          <div style="display:flex; align-items:center; gap:var(--space-m); margin-top:2px;">
-            <div class="t-hlarge">Saturday night</div>
-            <span class="pill green">reviewed</span>
+
+                    <div class="lockup">
+            <span class="state done">Reviewed</span>
+            <h3>Saturday</h3>
+            <div class="venue">Public Records</div>
+            <div class="meta">
+              <span>Jul 18</span>
+              <span style="color: var(--line);">|</span>
+              <span class="mstar">★ 4</span>
+            </div>
           </div>
-          <div class="chiprow">
-            <span class="chip">3h 50m</span>
-            <span class="chip"><span class="dot g"></span>35 songs</span>
-            <span class="chip"><span class="dot u"></span><span>3 uncaught moments</span></span>
+                    <div class="prov" style="display:flex; align-items:center; gap:7px; margin-top:9px; font: var(--font-track-sub)/1.3 var(--sans); color: var(--dim);">
+            <span class="avatar h3" style="width:22px;height:22px;font-size:11px;">🎧</span>
+            <span class="avatar h4" style="width:22px;height:22px;font-size:11px;margin-left:-10px;">🐞</span>
+            <span>You &amp; @maddie</span>
           </div>
 
-          <div class="section-label"><span>Timeline</span></div>
-          <div class="timeline" style="position:relative;">
+          <div class="statband">
+            <div><div class="k"><span class="eyeb">Length</span></div><div class="v">3h 50<small>m</small></div></div>
+            <div><div class="k"><span class="sline g sm"></span><span class="eyeb">Songs</span></div><div class="v">35</div></div>
+            <div><div class="k"><span class="sline u sm"></span><span class="eyeb">Unknown</span></div><div class="v">3</div></div>
+          </div>
+
+                              <div class="actmenu" style="top:60px; width:200px;">
+            <div class="r">Add a song<span>+</span></div>
+            <div class="r">Export to Apple Music</div>
+            <div class="r">Share set with friends<span>↑</span></div>
+          </div>
+
+                    <div class="timeline" style="position:relative; margin-top:calc(var(--space-l) + 52px);">
             <div class="scrubchip">
-              <span class="dot g"></span>
-              <div><div class="t">In This Bih'</div><div class="s">Chris Lorenzo &amp; Kah-Lo · 1:31 AM</div></div>
+              <span class="sline g"></span>
+              <div><div class="t">In This Bih'</div><div class="s">Chris Lorenzo &amp; Kah-Lo · 1:31 am</div></div>
             </div>
             <div class="bar">
               <div class="seg g" style="flex:5"></div><div class="seg g" style="flex:3"></div>
@@ -889,39 +1015,36 @@
             <div class="ticks"><span>10:20 pm</span><span>2:10 am</span></div>
           </div>
 
-          <div style="display:flex; gap:var(--space-s); margin-top:var(--space-l);">
-            <button class="btn" style="flex:1;">Export to Spotify</button>
-            <button class="btn outline" style="flex:1;">Share</button>
-          </div>
-
-          <div class="section-label">
-            <span>Tracklist</span>
+                    <div class="section-label band">
+            <span class="sline g"></span>
+            <span class="lab">Songs</span>
             <span class="count">35</span>
+            <span class="act plain" style="color: var(--faint);">⌃</span>
           </div>
           <div class="card rows">
             <div class="row">
               <span class="idx">1</span>
               <div class="art" style="background-image: url(art/onb-wakemeup.jpg);"></div>
               <div class="meta"><div class="t">Wake Me Up</div><div class="s">Avicii</div></div>
-              <span class="circ on">★</span><span class="stamp">11:58</span>
+              <span class="circ on">★</span><span class="stamp">11:58 PM</span>
             </div>
             <div class="row">
               <span class="idx">2</span>
               <div class="art" style="background-image: url(art/onb-palm.jpg);"></div>
               <div class="meta"><div class="t">palm of my hands (Odd Mob Remix)</div><div class="s">John Summit &amp; venbee</div></div>
-              <span class="circ">☆</span><span class="stamp">12:58</span>
+              <span class="circ">☆</span><span class="stamp">12:58 AM</span>
             </div>
             <div class="row">
               <span class="idx">3</span>
               <div class="art" style="background-image: url(art/onb-carcrash.jpg);"></div>
               <div class="meta"><div class="t">car crash</div><div class="s">jigitz</div></div>
-              <span class="circ">☆</span><span class="stamp">1:19</span>
+              <span class="circ">☆</span><span class="stamp">1:19 AM</span>
             </div>
             <div class="row">
               <span class="idx">4</span>
               <div class="art" style="background-image: url(art/onb-inthisbih.jpg);"></div>
               <div class="meta"><div class="t">In This Bih'</div><div class="s">Chris Lorenzo &amp; Kah-Lo</div></div>
-              <span class="circ on">★</span><span class="stamp">1:31</span>
+              <span class="circ on">★</span><span class="stamp">1:31 AM</span>
             </div>
           </div>
         </div>
@@ -946,15 +1069,22 @@
     </div>
 
     <ul class="claims">
-      <li data-t="playlist.c1"><b>Two export lanes.</b> Apple Music playlists land straight in your
-        own library — that one asks for permission once and needs an Apple
-        Music subscription on the phone. Spotify playlists come out curated by
-        Catchy: open the link, tap Follow, and it's in your library. There's no
-        Spotify account to connect on your side.</li>
-      <li data-t="playlist.c2"><b>Drag along the timeline</b> and a chip follows your finger naming
-        whatever was playing at that minute. Let go and it jumps to the song.</li>
-      <li data-t="playlist.c3"><b>Add, fix, or remove a song</b> at any point — while it's still
-        running, or months later.</li>
+      <li data-t="playlist.c1"><b>Apple Music export, and it's yours.</b>
+        <em>Send a set straight to your own Apple Music library.</em>
+        Catchy asks for permission once, and it needs an Apple Music
+        subscription on the phone. It's part of Catchy Pro.</li>
+      <li data-t="playlist.c2"><b>Spotify is one tap, not one more account.</b> Any song or artist
+        opens in Spotify — nothing to connect, nothing to sign in to.</li>
+      <li data-t="playlist.c3"><b>✦ Insights — the story behind the song.</b>&nbsp;<span class="pro">Pro</span> Tap anything you
+        caught and Catchy tells you
+        <em>who the artist is, where the song came from, and what to hear next</em>.
+        Three <span>free every month</span>; no limit with
+        <b>Catchy Pro</b>.</li>
+      <li data-t="playlist.c4"><b>Drag along the timeline</b> and a chip follows your finger naming
+        whatever was playing at that minute. Tap the bar instead and the list
+        opens and jumps to that song.</li>
+      <li data-t="playlist.c5"><b>Add or remove a song</b> at any point — while the set is still
+        running, or months later. Wrong name? That gets settled in review (step 2).</li>
     </ul>
   </section>
 
@@ -962,10 +1092,12 @@
     <div class="shot-head">
       <div class="ctx" data-t="share.ctx">step <b>4</b> · for the group chat</div>
       <h2 data-t="share.h2">Proof you were there.</h2>
-      <p data-t="share.p">Every set renders a card — the name, the length, the timeline of what
-         played, and how many moments stayed a mystery.
-         <strong>Send the card and the playlist link together</strong>, or
-         drop it straight on a story. Like a Strava run, but for the music.</p>
+      <p data-t="share.p">Every set renders a card — the venue, the length, the timeline of what
+         played, your rating, and how many moments stayed a mystery.
+         <strong>Send the card, or send the link</strong> — the link opens the
+         whole set for anyone, no app and no account. The card even prints the
+         address, so a screenshot is still a doorway. Like a Strava run, but
+         for the music.</p>
     </div>
 
     <div class="cardframe" style="max-width: 520px;">
@@ -973,19 +1105,21 @@
         <div class="head">
           <span class="mark"><span></span></span>
           <span class="brand">Catchy</span>
-          <span class="when">Jul 18, 2026</span>
+                    <span class="when">Jul 18–19, 2026</span>
         </div>
-        <div class="title">Saturday night</div>
-        <div class="counts">3h 50m · 35 songs · 3 still unknown</div>
-        <div class="bar">
+                <div class="title" style="line-height:1.08;">Public Records</div>
+        <div class="counts" style="line-height:1.2;">3h 50m · 35 songs · 3 still unknown</div>
+                <div style="font-size:3cqw; line-height:1; letter-spacing:.35cqw; color: var(--star); margin-top:.6cqw; flex-shrink:0;">★★★★☆</div>
+        <div class="bar" style="flex-shrink:0;">
           <div class="sc-g" style="flex:5"></div><div class="sc-g" style="flex:3"></div>
           <div class="sc-a" style="flex:1"></div><div class="sc-g" style="flex:6"></div>
           <div class="sc-q" style="flex:1"></div><div class="sc-g" style="flex:4"></div>
           <div class="sc-u" style="flex:1"></div><div class="sc-g" style="flex:5"></div>
           <div class="sc-a" style="flex:1"></div><div class="sc-g" style="flex:3"></div>
         </div>
-        <div class="clocks"><span>10:20pm</span><span>2:10am</span></div>
-        <div class="tracks">♪ Wake Me Up · palm of my hands (Odd Mob Remix) · car crash · In This Bih'…</div>
+        <div class="clocks" style="line-height:1.2;"><span>10:20pm</span><span>2:10am</span></div>
+                <div class="tracks" style="line-height:1.2; flex-shrink:0;">♪ Wake Me Up · palm of my hands (Odd Mob Remix) · car crash · In This Bih' · Pressure (Extended Mix) · Sweet Harmony · Losing It · Bad Habit…</div>
+                <div style="font: 600 2.08cqw/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--accent); margin-top:.6cqw; flex-shrink:0; white-space:nowrap;">share.joincatchy.com/s/7f2k9</div>
       </div>
     </div>
 
@@ -993,120 +1127,173 @@
       <li data-t="share.c1"><b>Three ways out</b> — <em>share the card</em>,
         <em>share the link</em>, or straight to
         an Instagram story.</li>
-      <li data-t="share.c2"><b>It survives midnight.</b> A set that runs past 12 still belongs to
-        the day it started on, on the card and everywhere else.</li>
-      <li data-t="share.c3"><b>Nothing leaves your phone until you send it.</b> The card is
-        rendered on the device.</li>
+      <li data-t="share.c2"><b>It survives midnight.</b> A set that runs past 12 belongs to the
+        day it started on — in your library, in the list, in the name. The card
+        names both dates, so nobody has to guess which night it was.</li>
+      <li data-t="share.c3"><b>The card is made on your phone</b>, and it goes nowhere until you
+        send it.</li>
     </ul>
   </section>
 
     <section class="shot" id="friends" data-slice="6">
     <div class="shot-head">
-      <div class="ctx" data-t="friends.ctx"><b>coming next</b> · not built yet</div>
+      <div class="ctx" data-t="friends.ctx"><b>with the people who were there</b> · in the app today</div>
       <h2 data-t="friends.h2">Sets are better shared.</h2>
-      <p data-t="friends.p">Today Catchy is a solo instrument and the Friends tab says so, out
-         loud. <strong>This is what we're building next</strong> — where a
-         set stops being just yours and becomes something the whole group
-         has a copy of.</p>
+      <p data-t="friends.p">Add friends by <strong>@handle</strong> or a link, and a set stops being
+         just yours. Friends see what you caught, react and comment on it, and
+         a set you were both at names the people who were there.
+         <strong>Anyone you send the link to can open the whole set</strong> —
+         no app, no account.</p>
     </div>
     <div class="stage duo">
       <div class="pane">
-        <div class="pane-tag now" data-t="friends.tag.now">in your hands today</div>
-      <div class="phone" lang="en">
-        <div class="island"></div>
-        <div class="statusbar"><span>6:20</span><span class="right">◧ 84%</span></div>
-        <div class="screen with-tabs">
-          <div class="t-hlarge" style="padding: 8px 0 0;">Friends</div>
-          <div style="min-height: 380px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:var(--space-m);">
-          <div style="width:96px; height:96px; border-radius:99px; display:grid; place-items:center;
-                      border:1.5px solid color-mix(in srgb, var(--accent) 25%, transparent);">
-            <svg viewBox="0 0 24 24" style="width:32px;height:32px;fill:none;stroke:var(--accent);stroke-width:1.6;">
-              <circle cx="9" cy="8" r="3.2"/><path d="M3.4 19.2c.6-3 2.9-4.7 5.6-4.7s5 1.7 5.6 4.7"/>
-              <circle cx="17.3" cy="8.6" r="2.6"/><path d="M16 14.7c2.3-.2 4.2 1.4 4.7 4.1"/>
-            </svg>
-          </div>
-          <div class="t-hmedium">Sets are better shared.</div>
-          <div class="t-hsub" style="max-width: 36ch;">Friends land here next — see who was out,<br>compare catches, build the playlist together.</div>
-          <div style="font: var(--font-chip)/1.3 var(--sans); color: var(--faint);">coming soon — this is what we're building next</div>
-          </div>
-        </div>
-        <div class="tabbar">
-          <span class="tab"><span class="glyph">♫</span>Library</span>
-          <span class="tab">
-            <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M6.5 7.5h11M9 4.8h6"/></svg>
-            Sets
-          </span>
-          <span class="tab catch"><span class="puck"><span></span></span>Catch</span>
-          <span class="tab active">
-            <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.4 19.2c.6-3 2.9-4.7 5.6-4.7s5 1.7 5.6 4.7"/><circle cx="17.3" cy="8.6" r="2.6"/><path d="M16 14.7c2.3-.2 4.2 1.4 4.7 4.1"/></svg>
-            Friends
-          </span>
-          <span class="tab">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="9.6" r="3"/><path d="M5.9 19a6.6 6.6 0 0 1 12.2 0"/></svg>
-            Profile
-          </span>
-        </div>
-      </div>
-      </div>
-
-      <div class="pane sketch">
-        <div class="pane-tag" data-t="friends.tag.soon">the sketch · not built</div>
+        <div class="pane-tag" data-t="friends.tag.tab">the friends tab</div>
         <div class="phone" lang="en">
           <div class="island"></div>
           <div class="statusbar"><span>6:20</span><span class="right">◧ 84%</span></div>
           <div class="screen with-tabs">
             <div style="display:flex; align-items:center; justify-content:space-between; padding-top:8px;">
               <div class="t-hlarge">Friends</div>
-              <span class="chip">+ add</span>
-            </div>
-
-            <div class="section-label"><span>Out right now</span></div>
-            <div class="card" style="border-color: color-mix(in srgb, var(--confident) 30%, transparent);">
-              <div style="display:flex; align-items:center; gap:var(--space-m);">
-                <div class="avatar" style="background: var(--confident);">D</div>
-                <div style="flex:1;">
-                  <div class="t-title">Dana</div>
-                  <div class="t-sub">Basement · Queens</div>
-                </div>
-                <span class="livepill"><span class="dot"></span>live · 47m</span>
-              </div>
-                            <div class="t-sub" style="margin:var(--space-m) 0;">12 songs caught so far — last one 2 min ago</div>
-              <button class="btn raised small" style="width:100%;">I'm here too → join the set</button>
-            </div>
-
-            <div class="section-label"><span>This week</span></div>
-            <div class="card" style="margin-bottom:var(--space-m);">
-              <div style="display:flex; align-items:center; gap:var(--space-m);">
-                <div class="avatar" style="background: var(--review);">M</div>
-                <div style="flex:1;">
-                  <div class="t-title">Marcus · Friday</div>
-                  <div class="t-sub">Knockdown Center</div>
-                </div>
-                <span class="t-time">2d</span>
-              </div>
-              <div class="chiprow" style="padding-top:var(--space-m);">
-                <span class="chip">31 songs</span>
-                <span class="chip"><span class="dot u"></span>2 unknown</span>
-              </div>
-              <div class="row" style="padding-bottom:0;">
-                <div class="art" style="background-image: url(art/onb-carcrash.jpg);"></div>
-                <div class="meta"><div class="t">car crash</div><div class="s">jigitz · his top find</div></div>
-                <span class="circ">☆</span>
+              <div style="display:flex; align-items:center; gap:var(--space-l); color: var(--dim); font-size:17px;">
+                <span>◔</span><span style="color: var(--accent);">+</span>
               </div>
             </div>
 
-            <div class="card">
-              <div style="display:flex; align-items:center; gap:var(--space-m);">
-                <div class="avatar" style="background: var(--confident);">D</div>
-                <div style="flex:1;">
-                  <div class="t-title">Dana · last Saturday</div>
-                  <div class="t-sub">Public Records</div>
+            <div class="section-label"><span class="lab">Out now</span></div>
+            <div class="card rows">
+              <div class="row">
+                <span class="avatar h2">🐢</span>
+                <div class="meta">
+                  <div class="t">Dana</div>
+                  <div class="s">@dana · <span style="color: var(--confident);">You're in ✓</span></div>
                 </div>
-                <span class="t-time">8d</span>
+                <span class="eyeb" style="color: var(--confident);">Out now</span>
               </div>
-              <div class="chiprow" style="padding-top:var(--space-m);">
-                <span class="chip">24 songs</span>
-                <span class="chip">you saved 3 of them</span>
+            </div>
+
+            <div class="section-label"><span class="lab">Friends</span><span class="count">7</span></div>
+            <div class="card rows">
+              <div class="row">
+                <span class="avatar h4">🐞</span>
+                <div class="meta"><div class="t">Marcus</div><div class="s">@maddie</div></div>
+                <span class="t-time">›</span>
+              </div>
+              <div class="row">
+                <span class="avatar h1">🐟</span>
+                <div class="meta"><div class="t">@pato</div><div class="s">since Jul</div></div>
+                <span class="t-time">›</span>
+              </div>
+            </div>
+
+                        <div class="section-label"><span class="lab">This week</span></div>
+            <div class="lockup" style="margin-top:0; padding-right:0;">
+              <h3 style="font: var(--font-h-medium)/1.1 var(--sans); letter-spacing:-.02em; text-transform:none;">Knockdown Center</h3>
+              <div class="meta" style="gap:9px;">
+                <span class="yin"><span class="sline p chip"></span><span>Joined</span></span>
+                <span>Fri · 2h 12m · 31 songs</span>
+              </div>
+            </div>
+            <div class="timeline" style="margin-top:10px;">
+              <div class="bar" style="height:9px;">
+                <div class="seg g" style="flex:6"></div><div class="seg a" style="flex:1"></div>
+                <div class="seg g" style="flex:5"></div><div class="seg u" style="flex:1"></div>
+                <div class="seg g" style="flex:7"></div><div class="seg q" style="flex:1"></div>
+                <div class="seg g" style="flex:4"></div>
+              </div>
+            </div>
+            <div class="statband" style="margin-top:10px;">
+              <div><div class="k"><span class="eyeb">Songs</span></div><div class="v">31</div></div>
+              <div><div class="k"><span class="eyeb">Length</span></div><div class="v">2h 12<small>m</small></div></div>
+              <div><div class="k"><span class="eyeb">Rated</span></div><div class="v" style="color: var(--star); font-size:16px;">★★★★☆</div></div>
+            </div>
+            <div class="row" style="padding-top:var(--space-m);">
+              <span class="avatar h3" style="width:20px;height:20px;font-size:10px;">🎧</span>
+              <div class="meta"><div class="s"><b style="color: var(--text);">@maddie</b> reacted 🔥</div></div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <span class="tab"><span class="glyph">♫</span>Library</span>
+            <span class="tab">
+              <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M6.5 7.5h11M9 4.8h6"/></svg>
+              Sets
+            </span>
+            <span class="tab catch"><span class="puck"><span></span></span>Catch</span>
+            <span class="tab active">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.4 19.2c.6-3 2.9-4.7 5.6-4.7s5 1.7 5.6 4.7"/><circle cx="17.3" cy="8.6" r="2.6"/><path d="M16 14.7c2.3-.2 4.2 1.4 4.7 4.1"/></svg>
+              Friends
+            </span>
+            <span class="tab">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="9.6" r="3"/><path d="M5.9 19a6.6 6.6 0 0 1 12.2 0"/></svg>
+              Profile
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pane">
+        <div class="pane-tag" data-t="friends.tag.bell">the bell</div>
+        <div class="phone" lang="en">
+          <div class="island"></div>
+          <div class="statusbar"><span>6:21</span><span class="right">◧ 84%</span></div>
+          <div class="screen with-tabs">
+                        <div style="display:flex; align-items:center; justify-content:space-between; padding-top:8px; opacity:.28;">
+              <div class="t-hlarge">Friends</div>
+              <div style="display:flex; align-items:center; gap:var(--space-l); color: var(--accent); font-size:17px;">
+                <span>◔</span><span>+</span>
+              </div>
+            </div>
+            <div style="border-top:.5px solid var(--line); margin-top:var(--space-l); padding-top:var(--space-m);">
+              <div style="width:36px; height:5px; border-radius:3px; background: var(--surface-raised); margin:0 auto var(--space-m);"></div>
+              <div class="t-hmedium">Activity</div>
+              <div class="t-sub">from your friends</div>
+            </div>
+
+            <div class="section-label"><span class="lab">Today</span></div>
+            <div>
+              <div class="brow">
+                <span class="sline p mk"></span>
+                <span class="avatar h1">🐟</span>
+                <div class="m">
+                  <div class="l"><b>@pato</b><span> commented</span> on <b>Warehouse marathon</b></div>
+                  <div class="q">this whole run was unreal, the last half hour especially</div>
+                </div>
+                <span class="clk">11:48</span>
+              </div>
+              <div class="brow">
+                <span class="sline p mk"></span>
+                <span class="avatar h2">🐕</span>
+                <div class="m">
+                  <div class="l"><b>@nachito</b> <span>asked to connect</span></div>
+                  <div class="verbs"><span>Accept</span><span class="quiet">Not now</span></div>
+                </div>
+                <span class="clk">10:02</span>
+              </div>
+              <div class="brow">
+                <span class="avatar h3">🎧</span>
+                <div class="m">
+                  <div class="l"><b>@maddie</b> reacted 🔥 to <b>Knockdown Center</b><span> — and others</span></div>
+                </div>
+                <span class="clk">9:15</span>
+              </div>
+            </div>
+
+            <div class="section-label"><span class="lab">Earlier</span></div>
+            <div>
+              <div class="brow">
+                <span class="avatar h4">🐞</span>
+                <div class="m">
+                  <div class="l"><b>@marcus</b> shared <b>Knockdown Center</b></div>
+                  <div class="l" style="color: var(--confident); font: var(--font-track-sub)/1.3 var(--sans); margin-top:3px;">You're in — find it in your Sets</div>
+                </div>
+                <span class="clk">Fri</span>
+              </div>
+              <div class="brow">
+                <span class="avatar h1">🐟</span>
+                <div class="m">
+                  <div class="l"><b>@pato</b> asked to connect from your link</div>
+                  <div class="verbs"><span>Accept</span><span class="quiet">Not now</span></div>
+                </div>
+                <span class="clk">Thu</span>
               </div>
             </div>
           </div>
@@ -1130,20 +1317,36 @@
       </div>
     </div>
 
-    <p class="stage-note" data-t="friends.note">One of these is the Friends tab as it ships today.
-      The other is a drawing of where it goes — a sketch, not a screenshot of
-      anything that runs yet.</p>
+    <p class="stage-note" data-t="friends.note">Both of these are the app as it ships. The Friends tab is where people
+      arrive and where their sets land; the bell is what they did with yours.</p>
 
-    <ul class="claims soon">
-      <li data-t="friends.c1"><b>One set, everyone's copy.</b> Two people in the same room catch
-        different songs — merge them and the set beats either one alone.</li>
-      <li data-t="friends.c2"><b>A link that opens the whole set</b>, not just a picture:
-        full tracklist, the timeline, tap through to the playlist.</li>
-      <li data-t="friends.c3"><b>Photos on the set.</b> The pictures from that room, attached to the
-        music from that room.</li>
-      <li data-t="friends.c4"><b>A nudge when an unknown finally drops.</b> That ID nobody could
-        name gets released six months later — you find out.</li>
-      <li data-t="friends.c5"><b>Your year in sets.</b> Everything you caught, one recap.</li>
+    <ul class="claims">
+      <li data-t="friends.c1"><b>Add a friend by @handle, by code, or by link.</b> Search a username and
+        tap <em>Ask to connect</em>, trade
+        codes in person, or send a link — whoever opens it can ask from there. With a table of
+        people, <em>start a room</em>: one code for
+        everyone, and it closes itself in fifteen minutes.</li>
+      <li data-t="friends.c2"><b>Who was there is part of the set.</b> Add the people you're with —
+        from the live screen while it's running
+        (<em>Who's with you?</em>) or from the
+        set afterwards (<em>Who was there?</em>).
+        They get the set <em>as it's caught</em>,
+        and their copy wears <em>Joined</em>.</li>
+      <li data-t="friends.c3"><b>A finished set goes to your friends on its own</b> — the tracklist,
+        the times, and what you called it. Catchy stops and asks the first time it happens, there's a
+        switch for it, and any single set can be un-shared from its own ⋯ menu
+        (<em>Stop sharing with friends</em>).
+        Unshare sticks: it goes from their app, and it stays gone.</li>
+      <li data-t="friends.c4"><b>Reactions and comments, and a bell that says who.</b>
+        <em>Activity</em> groups what happened into
+        <em>Today</em> and
+        <em>Earlier</em>, each row wearing the face of the person
+        who did it. Names, never a count.</li>
+      <li data-t="friends.c5"><b>A link anyone can open.</b> A shared set is a page at
+        <em>share.joincatchy.com</em> — the tracklist, the timeline, the stars you gave it — and
+        <em>anyone
+        with this link can see it</em>, no app and no account. Revoke it and
+        <em>the page goes dark</em>.</li>
     </ul>
   </section>
 
@@ -1152,80 +1355,155 @@
       <div class="ctx" data-t="you.ctx"><b>anytime</b> · you</div>
       <h2 data-t="you.h2">No bio. Your stats are the profile.</h2>
       <p data-t="you.p">Sets, songs, hours caught, favorite songs — accumulating on their own
-         while you listen. <strong>Share the card</strong> when a number
-         starts to look ridiculous.</p>
+         while you listen. It is one page: <strong>what a friend sees, with your
+         settings under it</strong>. The ⋯ menu shares the numbers as a card when
+         one of them starts to look ridiculous.</p>
     </div>
-    <div class="stage">
-      <div class="phone" lang="en">
-        <div class="island"></div>
-        <div class="statusbar"><span>6:21</span><span class="right">◧ 84%</span></div>
-        <div class="screen with-tabs">
-          <div class="t-hlarge" style="padding: 8px 0 var(--space-l);">Profile</div>
-
-          <div style="display:flex; align-items:center; gap:var(--space-l);">
-            <div style="width:64px; height:64px; border-radius:99px; display:grid; place-items:center;
-                        background: linear-gradient(135deg, var(--accent), var(--accent-deep));
-                        color: var(--ink);">
-              <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;opacity:.7;">
-                <path d="M3.5 8.4h3.3l1.5-2.2h7.4l1.5 2.2h3.3v10.2H3.5z"/><circle cx="12" cy="13" r="3.4"/>
-              </svg>
+    <div class="stage duo">
+      <div class="pane">
+        <div class="pane-tag" data-t="you.tag.profile">your profile</div>
+        <div class="phone" lang="en">
+          <div class="island"></div>
+          <div class="statusbar"><span>6:21</span><span class="right">◧ 84%</span></div>
+          <div class="screen with-tabs">
+            <div class="navbar">
+              <span class="title" style="text-align:left;">Profile</span>
+              <span class="more" style="color: var(--accent);">⋯</span>
             </div>
+
+                        <div class="actmenu" style="top:60px;">
+              <div class="r">Share your stats<span>↑</span></div>
+              <div class="r">Edit profile<span>✎</span></div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:var(--space-l); margin-top:var(--space-m);">
+              <div style="position:relative; flex-shrink:0;">
+                <span class="avatar h3" style="width:72px;height:72px;font-size:30px;">🎸</span>
+                <span style="position:absolute; right:-2px; bottom:-2px; width:22px; height:22px; border-radius:99px;
+                             background: var(--bg); border:1px solid var(--line); display:grid; place-items:center;
+                             font-size:11px; color: var(--dim);">✎</span>
+              </div>
+              <div>
+                <div style="font: var(--font-display-person-name)/1 var(--sans); letter-spacing:-.01em;">You</div>
+                <div class="t-hsub" style="margin-top:6px;">@nacho</div>
+              </div>
+            </div>
+            <div class="t-sub" style="color: var(--faint); margin-top:6px;">@instagram · shown on your profile</div>
+
+                        <div class="statband four">
+              <div><div class="k"><span class="eyeb">Sets</span></div><div class="v">12</div></div>
+              <div><div class="k"><span class="eyeb">Songs caught</span></div><div class="v">214</div></div>
+              <div><div class="k"><span class="eyeb">Hours</span></div><div class="v">41</div></div>
+              <div><div class="k"><span class="eyeb">Favorites</span></div><div class="v">27</div></div>
+            </div>
+
+            <div class="section-label"><span class="lab">Pinned</span></div>
+            <div class="card rows">
+              <div class="row">
+                <div class="art" style="background-image: url(art/onb-inthisbih.jpg);"></div>
+                <div class="meta"><div class="t">Public Records</div><div class="s">Sat, Jul 18 · 3h 50m · 35 songs</div></div>
+                <span class="t-time">Unpin</span>
+              </div>
+            </div>
+
+            <div class="t-sub" style="color: var(--faint); margin-top:var(--space-l);">Everything above is your profile, the page friends open.</div>
+
+            <div class="section-label"><span class="lab">Account</span></div>
             <div>
-              <div class="t-hmedium">You</div>
-              <div class="t-sub" style="color: var(--faint);">@instagram · shown on your profile</div>
+              <div class="door">
+                <span class="g">@</span>
+                <span class="w">nacho@catchy<small>your shares and friends ride this identity</small></span>
+                <span class="val on">Signed in</span>
+              </div>
+                            <div class="door">
+                <span class="g">✦</span>
+                <span class="w"><span>Catchy</span> <span class="pro">PRO</span><small>the story behind every set you catch</small></span>
+              </div>
+            </div>
+
+            <div class="section-label"><span class="lab">The app</span></div>
+            <div>
+              <div class="door">
+                <span class="g">◎</span>
+                <span class="w">Settings<small>exports, notifications, privacy — and the intro again</small></span>
+                <span class="chev">›</span>
+              </div>
             </div>
           </div>
 
-          <div class="card" style="margin-top:var(--space-l); display:flex; justify-content:space-between; text-align:center;">
-                        <div><div style="font:800 24px/1.1 var(--sans);">12</div><div style="font-size:10px; font-weight:600; letter-spacing:.6px; color:var(--faint);">SETS</div></div>
-            <div><div style="font:800 24px/1.1 var(--sans);">214</div><div style="font-size:10px; font-weight:600; letter-spacing:.6px; color:var(--faint);">SONGS</div></div>
-            <div><div style="font:800 24px/1.1 var(--sans);">41h</div><div style="font-size:10px; font-weight:600; letter-spacing:.6px; color:var(--faint);">CAUGHT</div></div>
-            <div><div style="font:800 24px/1.1 var(--sans);">27</div><div style="font-size:10px; font-weight:600; letter-spacing:.6px; color:var(--faint);">FAVORITES</div></div>
-          </div>
-          <div style="border-top:.5px solid var(--line); margin-top:var(--space-m); padding-top:var(--space-m); text-align:center;">
-            <span style="font: var(--font-section-label)/1 var(--sans); letter-spacing:.8px; color: var(--accent);">♪ Share my stats</span>
-          </div>
-
-          <div class="section-label"><span>Settings</span></div>
-          <div class="card rows">
-            <div class="row">
-              <div class="meta"><div class="t">Spotify</div><div class="s">playlists export here</div></div>
-              <span class="pill green">connected ✓</span>
-            </div>
-            <div class="row">
-              <div class="meta"><div class="t">Apple Music</div><div class="s">export sets from the set page menu</div></div>
-              <span class="pill green">ready ✓</span>
-            </div>
-            <div class="row">
-              <div class="meta"><div class="t">Notifications &amp; timing</div><div class="s">nudges, reminders, clip retention</div></div>
-              <span class="t-time">›</span>
-            </div>
-            <div class="row">
-              <div class="meta"><div class="t">Privacy &amp; FAQ</div><div class="s">what's kept, what never is — and why</div></div>
-              <span class="t-time">›</span>
-            </div>
-            <div class="row">
-              <div class="meta"><div class="t">Replay the intro</div><div class="s">the three-card tour from first launch</div></div>
-              <span class="t-time">›</span>
-            </div>
+          <div class="tabbar">
+            <span class="tab"><span class="glyph">♫</span>Library</span>
+            <span class="tab">
+              <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M6.5 7.5h11M9 4.8h6"/></svg>
+              Sets
+            </span>
+            <span class="tab catch"><span class="puck"><span></span></span>Catch</span>
+            <span class="tab">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.4 19.2c.6-3 2.9-4.7 5.6-4.7s5 1.7 5.6 4.7"/><circle cx="17.3" cy="8.6" r="2.6"/><path d="M16 14.7c2.3-.2 4.2 1.4 4.7 4.1"/></svg>
+              Friends
+            </span>
+            <span class="tab active">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="9.6" r="3"/><path d="M5.9 19a6.6 6.6 0 0 1 12.2 0"/></svg>
+              Profile
+            </span>
           </div>
         </div>
+      </div>
 
-        <div class="tabbar">
-          <span class="tab"><span class="glyph">♫</span>Library</span>
-          <span class="tab">
-            <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M6.5 7.5h11M9 4.8h6"/></svg>
-            Sets
-          </span>
-          <span class="tab catch"><span class="puck"><span></span></span>Catch</span>
-          <span class="tab">
-            <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.4 19.2c.6-3 2.9-4.7 5.6-4.7s5 1.7 5.6 4.7"/><circle cx="17.3" cy="8.6" r="2.6"/><path d="M16 14.7c2.3-.2 4.2 1.4 4.7 4.1"/></svg>
-            Friends
-          </span>
-          <span class="tab active">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="9.6" r="3"/><path d="M5.9 19a6.6 6.6 0 0 1 12.2 0"/></svg>
-            Profile
-          </span>
+      <div class="pane">
+        <div class="pane-tag" data-t="you.tag.settings">settings</div>
+        <div class="phone" lang="en">
+          <div class="island"></div>
+          <div class="statusbar"><span>6:22</span><span class="right">◧ 84%</span></div>
+          <div class="screen with-tabs">
+            <div class="navbar">
+              <span class="back">‹</span><span class="title">Settings</span><span class="more"></span>
+            </div>
+
+                        <div class="section-label"><span class="lab">Exports</span></div>
+            <div>
+              <div class="door">
+                <span class="g">♪</span>
+                <span class="w">Apple Music<small>export sets from the set page menu</small></span>
+                <span class="val">Not linked</span>
+              </div>
+            </div>
+
+            <div class="section-label"><span class="lab">The app</span></div>
+            <div>
+              <div class="door">
+                <span class="g">◔</span>
+                <span class="w">Notifications &amp; timing<small>nudges, reminders, clip retention</small></span>
+                <span class="chev">›</span>
+              </div>
+              <div class="door">
+                <span class="g">◐</span>
+                <span class="w">Privacy &amp; FAQ<small>what's kept, what never is — and why</small></span>
+                <span class="chev">›</span>
+              </div>
+              <div class="door">
+                <span class="g">▷</span>
+                <span class="w">Replay the intro<small>the four-card tour from first launch</small></span>
+              </div>
+            </div>
+                      </div>
+
+          <div class="tabbar">
+            <span class="tab"><span class="glyph">♫</span>Library</span>
+            <span class="tab">
+              <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M6.5 7.5h11M9 4.8h6"/></svg>
+              Sets
+            </span>
+            <span class="tab catch"><span class="puck"><span></span></span>Catch</span>
+            <span class="tab">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.4 19.2c.6-3 2.9-4.7 5.6-4.7s5 1.7 5.6 4.7"/><circle cx="17.3" cy="8.6" r="2.6"/><path d="M16 14.7c2.3-.2 4.2 1.4 4.7 4.1"/></svg>
+              Friends
+            </span>
+            <span class="tab active">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="9.6" r="3"/><path d="M5.9 19a6.6 6.6 0 0 1 12.2 0"/></svg>
+              Profile
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -1238,11 +1516,11 @@
           <span class="since">since May 2026</span>
         </div>
         <div class="body">
-          <div class="tiles">
-            <div class="tile"><b>12</b><span>sets</span></div>
-            <div class="tile"><b>214</b><span>songs caught</span></div>
-            <div class="tile"><b>41</b><span>hours of music</span></div>
-            <div class="tile"><b>27</b><span>favorites</span></div>
+                    <div class="tiles">
+            <div class="tile"><b>12</b><span>Sets</span></div>
+            <div class="tile"><b>214</b><span>Songs caught</span></div>
+            <div class="tile"><b>41</b><span>Hours</span></div>
+            <div class="tile"><b>27</b><span>Favorites</span></div>
           </div>
           <div class="mosaic">
             <i><em class="sc-g" style="height:38%"></em><em class="sc-a" style="height:9%"></em><em class="sc-g" style="height:22%"></em></i>
@@ -1256,6 +1534,35 @@
         <div class="foot">live music captured</div>
       </div>
     </div>
+
+        <div class="shot-head" id="pro" style="margin-top:52px; scroll-margin-top:24px;">
+      <div class="ctx" data-t="pro.ctx"><b>Catchy Pro</b> · the paid tier</div>
+      <h2 data-t="pro.h2">Small, and it says so.</h2>
+      <p data-t="pro.p">The app is free and stays free. <strong>Catchy Pro</strong> is one
+         subscription on top of it — Insights, Apple Music export, and capture
+         with no signal — from the App Store, starting with a free trial.</p>
+    </div>
+    <ul class="claims">
+      <li data-t="pro.c1"><b>What's free is free for good.</b>
+        <em>Capturing a set, reviewing it and sharing it stay free. Always.</em>
+        So are your library, your stats, your friends, the cards and the pages
+        you share — and recognition is never behind the tier.</li>
+      <li data-t="pro.c2"><b>✦ Insights, on any song you caught.</b>&nbsp;<span class="pro">Pro</span>
+        <em>Insights is the story behind the set — the artist, the record, and where to go next, on any song you caught.</em>
+        Three are <span>free every month</span> without Pro;
+        the counter only shows up once you've spent the first one.</li>
+      <li data-t="pro.c3"><b>Apple Music export.</b>&nbsp;<span class="pro">Pro</span>
+        <em>Send a set straight to your own Apple Music library.</em>
+        Permission is asked once, and it needs an Apple Music subscription on
+        the phone.</li>
+      <li data-t="pro.c5"><b>Capture with no signal.</b>&nbsp;<span class="pro">Pro</span>
+        In a basement with no service, the stretches it couldn't identify wait
+        on your phone and get their names the moment you're back online.</li>
+      <li data-t="pro.c4"><b>It's a subscription, bought from the App Store.</b> It starts with
+        a free trial, it renews until you cancel, and you manage or cancel it
+        in your Apple account settings — the price is whatever the App Store
+        shows you there.</li>
+    </ul>
   </section>
 
     <section class="privacy" id="privacy" data-slice="7">
@@ -1263,7 +1570,7 @@
       <h2 data-t="privacy.h2">It listens. Here is exactly what it keeps.</h2>
       <p class="sub" data-t="privacy.sub">An app that holds a microphone open for hours owes you a
         straight answer about where the sound goes.</p>
-      <ul class="claims" style="background:none;border:none;padding:0;margin:0 auto;">
+      <ul class="claims" style="margin:0 auto;">
         <li data-t="privacy.c1"><b>The sound itself never leaves.</b> Your phone turns what it
           hears into a fingerprint on the device and sends only that — never
           the audio — to Apple's Shazam service to be matched. The audio it
@@ -1280,45 +1587,46 @@
           until it can be identified, and is deleted the moment it is. That's
           the price of not losing it.</li>
         <li data-t="privacy.c4"><b>An account is real, and it's for friends.</b> Capturing,
-          reviewing, your library and exporting need no sign-up and no password,
-          and opening a night someone shares with you needs nothing at all.
+          reviewing and your library need no sign-up and no password,
+          and opening a set someone shares with you needs nothing at all.
           Signing in (Apple or Google) is what backs your friend code, your
           friends list and your share links, so they survive a new phone — and
           adding a friend is the one thing that asks for it. Signing in picks
           your @username too — the server holds it, it's how friends find
           you, and you can change it later (once every 30 days) — along with a display name if
-          you add one, and a profile whose counters you can
-          switch off. Once you have friends, a finished night goes to them
+          you add one, and a profile carrying your counters, the disc you
+          chose and your Instagram handle if you added one, all of which you
+          can switch off. Once you have friends, a finished set goes to them
           unless you switch that off — Catchy asks the first time it happens,
-          and any night can be unshared. Your audio never leaves either way.</li>
+          and any set can be unshared. Your audio never leaves either way.</li>
         <li data-t="privacy.c5"><b>No analytics SDK, no tracking, no trail of where you go.</b>
-          The only time Catchy uses your location is when you tap <em data-swift="LiveBlock.swift::Pin the venue">Pin the venue</em>, once
+          The only time Catchy uses your location is when you tap <em>Pin the venue</em>, once
           per set, to save where the set was — those coordinates never leave your phone,
           and the venue's name is the only part of the place that ever travels: with a set
           you share, or to a friend you let join you. Our server does
           the connecting — friend links, invitations, the pages you share — and
-          never sees your audio, or the name of a night you didn't share (a
-          private night sends only the capture diagnostics below, as catalog
-          IDs and times — and an Insights question when you ask one). Export to Spotify
-          without your own account and a random install ID goes along, so that
-          shared account can't be abused; it's tied to nothing about you and
-          resets if you reinstall.</li>
+          never sees your audio, or the name of a set you didn't share (a
+          private set sends only the capture diagnostics below, as catalog
+          IDs and times — and an Insights question when you ask one). Open a song in
+          Spotify and a random install ID
+          goes along with that one request and nothing else; it's tied to
+          nothing about you and resets if you reinstall.</li>
         <li data-t="privacy.c6"><b>Capture diagnostics, which you can switch off.</b> After a
-          night is reviewed, the app sends what its
+          set is reviewed, the app sends what its
           <span>Capture health</span> panel shows:
           counters, and the per-window recognition events — which catalog
           songs were recognized and when, as catalog identifiers and numbers.
           Never audio, never a recording, never song titles or set names. It
-          exists to fix how nights get recognized. Switching it off deletes
-          what was sent; deleting a night deletes that night's rows.</li>
+          exists to fix how sets get recognized. Switching it off deletes
+          what was sent; deleting a set deletes that set's rows.</li>
         <li data-t="privacy.c7"><b>Ask about an artist, and that one question leaves the phone.</b>
           Open a song's card and Catchy starts the
           <span>✦ Insights</span>
           lookup so the answer is ready if you tap: the song's title and
           artist go to our server, and the artist's name to MusicBrainz, the
           public music encyclopedia, to make sure it's the right one. Any
-          night, shared or private — it's you asking about an artist, not the
-          night reporting itself, and nothing else about the night goes
+          set, shared or private — it's you asking about an artist, not the
+          set reporting itself, and nothing else about the set goes
           along.</li>
       </ul>
       <p class="more"><a href="privacy.html" data-t="privacy.more">The full privacy policy →</a></p>
@@ -1367,27 +1675,29 @@
 const ES = {
   'hero.eyebrow': 'alfa para amigos y familia · en TestFlight',
   'hero.h1': 'Descubre cada canción que sonó.',
-  'hero.lede': 'Venga la música de donde venga — un DJ, un bar, una fiesta, el aux de alguien más — abre <strong>Catchy</strong> cuando empieza la música. Se queda escuchando contigo y va nombrando lo que oye, hora tras hora, y es honesta con lo que se le escapó. Después todo eso es tuyo: la lista de canciones, una línea de tiempo de lo que sonó, y una playlist para mandarles a tus amigos.',
+  'hero.lede': 'Venga la música de donde venga — un DJ, un bar, una fiesta, el aux de alguien más — abre <strong>Catchy</strong> cuando empieza la música. Se queda escuchando contigo y va nombrando lo que oye, hora tras hora, y es honesta con lo que se le escapó. Después todo eso es tuyo: la lista de canciones, una línea de tiempo de lo que sonó, y una tarjeta para mandarles a tus amigos.',
   'hero.versus': 'Shazam captura <b>una canción</b>. Catchy captura <b>todo lo que sonó</b>.',
+  'hero.pro': '<b>Capturar un set, revisarlo y compartirlo son gratis. Siempre.</b> <em lang=\'en\'>Capturing a set, reviewing it and sharing it stay free. Always.</em> Catchy Pro agrega Insights, exportar a Apple Music y capturar sin señal.',
 
   'step1.t': 'Captura', 'step1.d': 'un toque cuando empieza la música',
   'step2.t': 'Revisa',  'step2.d': 'resuelve las dudas cuando quieras',
-  'step3.t': 'Playlist', 'step3.d': 'Spotify o Apple Music',
+  'step3.t': 'El set', 'step3.d': 'toda la noche, en orden',
   'step4.t': 'Comparte', 'step4.d': 'una tarjeta del set, para el grupo',
   'step.go': 'verlo →',
 
-  'more.friends': 'Amigos — lo que viene',
+  'more.friends': 'Amigos y sets compartidos',
   'more.you': 'Tu perfil',
+  'more.pro': 'Qué agrega Pro',
   'more.privacy': 'Qué guarda',
   'cta': 'Únete a la alfa en TestFlight →',
   'cta.note': 'iPhone · iOS 18 o superior · no hay que registrarse',
 
   'catch.ctx': 'paso <b>1</b> · mientras suena la música',
   'catch.h2': 'Inícialo una vez y después toca lo que importa.',
-  'catch.p': '<strong>Toca el disco para cualquier canción que no te quieras perder</strong> — esa es la captura que nunca falla, y funciona desde la pantalla bloqueada sin desbloquear. Mientras tanto, deja el celular donde pueda oír y va sumando lo que logra captar. Lo que no puede nombrar queda marcado igual, con el momento guardado, así no desaparece nada en silencio.',
+  'catch.p': '<strong>Toca el disco para cualquier canción que no te quieras perder</strong> — esa es la que te contesta al toque, y funciona desde la pantalla bloqueada sin desbloquear. Mientras tanto, deja el celular donde pueda oír y va sumando lo que logra captar. Lo que no puede nombrar queda marcado igual, con el momento guardado, así no desaparece nada en silencio.',
   'catch.c1': '<b>Sigue en marcha con la pantalla apagada.</b> Bloquea el celular, usa otras apps — el set sigue en marcha, y te lo dice en la pantalla bloqueada. Si grabas un video, la cámara se queda con el micrófono, así que el set se pausa solo y se reanuda cuando vuelves.',
-  'catch.c2': '<b>Hay un botón <em lang=\'en\'>Catch now</em> en la pantalla bloqueada.</b> Escuchas algo que necesitas identificar, lo presionas sin desbloquear, y unos quince segundos después tienes la respuesta.',
-  'catch.c3': '<b>Sin señal no pasa nada.</b> Sigue juntando por su cuenta y nombra todo apenas vuelves a tener internet — <em lang=\'en\'>No service — still capturing</em>.',
+  'catch.c2': '<b>Hay un botón <em lang=\'en\'>Catch now</em> en la pantalla bloqueada.</b> Escuchas algo que necesitas identificar, lo presionas sin desbloquear, y unos diez segundos después tienes la respuesta.',
+  'catch.c3': '<b>Sin señal no pasa nada.</b>&nbsp;<span class="pro">Pro</span> Sigue juntando por su cuenta y nombra todo apenas vuelves a tener internet — <em lang=\'en\'>No service — still capturing</em>. Capturar sin señal es parte de Catchy Pro.',
   'catch.c4': '<b>Cuando falla, lo dice</b> — <em lang=\'en\'>too muffled to name — try it out of your pocket</em> — en vez de hacer como que no oyó nada.',
 
   'review.ctx': 'paso <b>2</b> · cuando tengas un rato',
@@ -1399,43 +1709,56 @@ const ES = {
 
   'playlist.ctx': 'paso <b>3</b> · el set, guardado',
   'playlist.h2': 'Todo lo que sonó, en orden.',
-  'playlist.p': 'Cada sesión se convierte en un set: la lista de canciones en orden, una línea de tiempo por la que puedes arrastrar el dedo para ver qué sonaba en cada momento, y <strong>un toque para tener la playlist</strong> en Spotify o Apple Music. Las canciones que te gustaron se llevan un corazón y quedan en tu biblioteca con el set todavía pegado a ellas.',
-  'playlist.c1': '<b>Dos formas de exportar.</b> Las playlists de Apple Music van directo a tu biblioteca — esa vía te pide permiso una vez y necesita una suscripción a Apple Music en el celular. Las de Spotify salen curadas por Catchy: abres el link, tocas <em lang=\'en\'>Follow</em>, y ya está en tu biblioteca. No tienes que conectar ninguna cuenta de Spotify.',
-  'playlist.c2': '<b>Arrastra el dedo por la línea de tiempo</b> y una etiqueta te va diciendo qué sonaba en ese minuto. La sueltas y salta a la canción.',
-  'playlist.c3': '<b>Agrega, corrige o quita una canción</b> en cualquier momento — mientras el set sigue en marcha, o meses después.',
+  'playlist.p': 'Cada sesión se convierte en un set: la lista de canciones en orden, una línea de tiempo por la que puedes arrastrar el dedo para ver qué sonaba en cada momento, y el menú ⋯ que lleva los verbos como palabras — entre ellos mandar el set directo a tu propia biblioteca de Apple Music, cuando el set ya está revisado. Ese es parte de Catchy Pro. Cada canción que dejas queda sola en tu biblioteca, con el set del que salió todavía pegado. La ★ es para las que fueron la noche.',
+  'playlist.c1': '<b>Exportar a Apple Music, a tu propia biblioteca.</b> <em lang=\'en\'>Send a set straight to your own Apple Music library.</em> Catchy te pide permiso una vez, y necesita una suscripción a Apple Music en el celular. Es parte de Catchy Pro.',
+  'playlist.c2': '<b>Spotify es un toque, no una cuenta más.</b> Cualquier canción o artista se abre en Spotify — nada que conectar, nada donde iniciar sesión.',
+  'playlist.c3': '<b>✦ Insights — la historia detrás de la canción.</b>&nbsp;<span class="pro">Pro</span> Toca cualquier cosa que capturaste y Catchy te cuenta <em lang=\'en\'>who the artist is, where the song came from, and what to hear next</em> — quién es el artista, de dónde salió la canción y qué escuchar después. Tres <span>gratis al mes</span>; sin límite con <b>Catchy Pro</b>.',
+  'playlist.c4': '<b>Arrastra el dedo por la línea de tiempo</b> y una etiqueta te va diciendo qué sonaba en ese minuto. Si en vez de eso la tocas, la lista se abre y salta a esa canción.',
+  'playlist.c5': '<b>Agrega o quita una canción</b> en cualquier momento — mientras el set sigue en marcha, o meses después. ¿Nombre equivocado? Eso se arregla en la revisión (paso 2).',
 
   'share.ctx': 'paso <b>4</b> · para el grupo',
   'share.h2': 'La prueba de que estuviste.',
-  'share.p': 'Cada set genera una tarjeta — el nombre, la duración, la línea de tiempo de lo que sonó, y cuántos momentos quedaron sin resolver. <strong>Manda la tarjeta y el link de la playlist juntos</strong>, o súbela directo a una historia. Como una carrera de Strava, pero de música.',
+  'share.p': 'Cada set genera una tarjeta — el lugar, la duración, la línea de tiempo de lo que sonó, tu calificación, y cuántos momentos quedaron sin resolver. <strong>Manda la tarjeta, o manda el link</strong> — el link abre el set entero para cualquiera, sin app y sin cuenta. La tarjeta hasta lleva la dirección impresa, así que una captura de pantalla también es una puerta. Como una carrera de Strava, pero de música.',
   'share.c1': '<b>Tres formas de compartir</b> — <em lang=\'en\'>share the card</em>, <em lang=\'en\'>share the link</em>, o directo a una historia de Instagram.',
-  'share.c2': '<b>Sobrevive a la medianoche.</b> Un set que cruza las 12 sigue perteneciendo al día en que empezó, en la tarjeta y en todos lados.',
-  'share.c3': '<b>Nada sale de tu celular hasta que lo mandas.</b> La tarjeta se genera en el dispositivo.',
+  'share.c2': '<b>Sobrevive a la medianoche.</b> Un set que cruza las 12 sigue perteneciendo al día en que empezó — en tu biblioteca, en la lista, en el nombre. La tarjeta nombra las dos fechas, para que nadie tenga que adivinar qué noche fue.',
+  'share.c3': '<b>La tarjeta se genera en tu celular</b>, y no va a ningún lado hasta que la mandas.',
 
-  'friends.ctx': '<b>lo que viene</b> · todavía no está hecho',
+  'friends.ctx': '<b>con quienes estuvieron ahí</b> · en la app hoy',
   'friends.h2': 'Los sets se disfrutan más en grupo.',
-  'friends.p': 'Hoy Catchy es un instrumento solitario y la pestaña de Amigos lo dice en voz alta. <strong>Esto es lo que vamos a construir a continuación</strong> — donde un set deja de ser solo tuyo y pasa a ser algo de lo que todo el grupo tiene una copia.',
-  'friends.tag.now': 'en tus manos hoy',
-  'friends.tag.soon': 'el boceto · no está hecho',
-  'friends.note': 'Una de estas es la pestaña de Amigos como está hoy. La otra es un dibujo de hacia dónde va — un boceto, no una captura de algo que ya funcione.',
-  'friends.c1': '<b>Un set, la copia de todos.</b> Dos personas en el mismo lugar capturan canciones distintas — júntalas y el set queda mejor que el de cualquiera de las dos por separado.',
-  'friends.c2': '<b>Un link que abre el set entero</b>, no solo una imagen: la lista completa, la línea de tiempo, y un toque para ir a la playlist.',
-  'friends.c3': '<b>Fotos en el set.</b> Las fotos de ese lugar, pegadas a la música de ese lugar.',
-  'friends.c4': '<b>Un aviso cuando por fin sale una canción desconocida.</b> Esa canción que nadie pudo nombrar se publica seis meses después — y te enteras.',
-  'friends.c5': '<b>Tu año en sets.</b> Todo lo que capturaste, en un resumen.',
+  'friends.p': 'Agrega amigos por <strong>@usuario</strong> o con un link, y el set deja de ser solo tuyo. Tus amigos ven lo que capturaste, reaccionan y comentan, y un set en el que estuvieron los dos nombra a quienes estuvieron ahí. <strong>Cualquiera a quien le mandes el link puede abrir el set entero</strong> — sin app y sin cuenta.',
+  'friends.tag.tab': 'la pestaña de amigos',
+  'friends.tag.bell': 'la campana',
+  'friends.note': 'Las dos son la app como está hoy. En la pestaña de Amigos llega la gente y llegan sus sets; la campana es lo que hicieron con los tuyos.',
+  'friends.c1': '<b>Agrega a un amigo por @usuario, por código o por link.</b> Busca un usuario y toca <em lang=\'en\'>Ask to connect</em>, intercambien códigos en persona, o manda un link — quien lo abra puede pedirlo desde ahí. Si son varios en una mesa, <em lang=\'en\'>start a room</em>: un código para todos, y se cierra solo a los quince minutos.',
+  'friends.c2': `<b>Quién estuvo ahí es parte del set.</b> Agrega a la gente con la que estás — desde la pantalla en vivo mientras corre (<em lang='en'>Who's with you?</em>) o desde el set después (<em lang='en'>Who was there?</em>). Reciben el set <em lang='en'>as it's caught</em>, y su copia lleva <em lang='en'>Joined</em>.`,
+  'friends.c3': '<b>Un set terminado les llega solo a tus amigos</b> — la lista de canciones, los horarios, y el nombre que le pusiste. Catchy se detiene y te pregunta la primera vez que pasa, hay un interruptor para eso, y cualquier set se puede dejar de compartir desde su propio menú ⋯ (<em lang=\'en\'>Stop sharing with friends</em>). Y se queda así: desaparece de su app, y no vuelve.',
+  'friends.c4': '<b>Reacciones y comentarios, y una campana que dice quién.</b> <em lang=\'en\'>Activity</em> agrupa lo que pasó en <em lang=\'en\'>Today</em> y <em lang=\'en\'>Earlier</em>, y cada fila lleva la cara de quien lo hizo. Nombres, nunca un número.',
+  'friends.c5': '<b>Un link que cualquiera puede abrir.</b> Un set compartido es una página en <em>share.joincatchy.com</em> — la lista de canciones, la línea de tiempo, las estrellas que le pusiste — y <em lang=\'en\'>anyone with this link can see it</em>, sin app y sin cuenta. Si lo revocas, <em lang=\'en\'>the page goes dark</em>.',
+  'you.tag.profile': 'tu perfil',
+  'you.tag.settings': 'ajustes',
 
   'you.ctx': '<b>cuando quieras</b> · tú',
   'you.h2': 'Sin biografía. Tus números son el perfil.',
-  'you.p': 'Sets, canciones, horas capturadas, canciones favoritas — se acumulan solos mientras escuchas. <strong>Comparte la tarjeta</strong> cuando algún número empiece a dar risa.',
+  'you.p': 'Sets, canciones, horas capturadas, canciones favoritas — se acumulan solos mientras escuchas. Es una sola página: <strong>lo que ve un amigo, con tus ajustes debajo</strong>. El menú ⋯ comparte los números como tarjeta cuando alguno empieza a dar risa.',
+
+  'pro.ctx': '<b>Catchy Pro</b> · el plan de pago',
+  'pro.h2': 'Chico, y lo dice.',
+  'pro.p': 'La app es gratis y sigue gratis. <strong>Catchy Pro</strong> es una suscripción encima de eso — Insights, exportar a Apple Music y capturar sin señal — se compra en la App Store y parte con una prueba gratis.',
+  'pro.c1': '<b>Lo que es gratis, es gratis para siempre.</b> <em lang=\'en\'>Capturing a set, reviewing it and sharing it stay free. Always.</em> Capturar un set, revisarlo y compartirlo son gratis, siempre. También tu biblioteca, tus números, tus amigos, las tarjetas y las páginas que compartes — y el reconocimiento nunca queda detrás del plan de pago.',
+  'pro.c2': '<b>✦ Insights, en cualquier canción que capturaste.</b>&nbsp;<span class="pro">Pro</span> <em lang=\'en\'>Insights is the story behind the set — the artist, the record, and where to go next, on any song you caught.</em> Es la historia detrás del set: el artista, el disco, y para dónde seguir. Tres son <span>gratis al mes</span> sin Pro; el contador recién aparece cuando gastas la primera.',
+  'pro.c3': '<b>Exportar a Apple Music.</b>&nbsp;<span class="pro">Pro</span> <em lang=\'en\'>Send a set straight to your own Apple Music library.</em> Manda un set directo a tu propia biblioteca de Apple Music: te pide permiso una vez, y necesita una suscripción a Apple Music en el celular.',
+  'pro.c5': '<b>Capturar sin señal.</b>&nbsp;<span class="pro">Pro</span> En un subterráneo sin señal, los tramos que no pudo identificar esperan en tu celular y reciben su nombre apenas vuelves a tener internet.',
+  'pro.c4': '<b>Es una suscripción, se compra en la App Store.</b> Parte con una prueba gratis, se renueva hasta que la canceles, y la administras o la cancelas en los ajustes de tu cuenta de Apple — el precio es el que te muestre ahí la App Store.',
 
   'privacy.h2': 'La app escucha. Esto es exactamente lo que guarda.',
   'privacy.sub': 'Una app que tiene el micrófono abierto durante horas te debe una respuesta clara sobre a dónde va ese sonido.',
   'privacy.c1': '<b>El sonido en sí nunca sale.</b> Tu celular convierte, ahí mismo en el dispositivo, lo que oye en una huella acústica y manda solo eso — nunca el audio — al servicio Shazam de Apple para identificarlo. El audio del que sacó la huella se descarta en el acto.',
   'privacy.c2': '<b>Solo se guarda audio de lo que te vamos a pedir que decidas tú</b> — un clip corto por cada canción de la que no estuvo segura, y por cada momento que no pudo nombrar. Quedan en tu celular, se borran solos cuando terminas de revisar el set (o a los 30 días si nunca lo haces), y salen del dispositivo únicamente si tú decides compartir uno. La única excepción es un clip al que le tocas <em lang=\'en\'>Keep clip</em>: ese queda tuyo hasta que lo borres.',
   'privacy.c3': '<b>Cuando no se puede identificar en el momento</b> — sin señal, o con el servicio caído — ese tramo de audio espera en el celular hasta que se pueda resolver, y se borra apenas se resuelve. Ese es el precio de no perderlo.',
-  'privacy.c4': '<b>La cuenta es real, y es para los amigos.</b> Capturar, revisar, tu biblioteca y exportar no requieren registro ni contraseña, y abrir una noche que alguien comparte contigo no requiere nada. Iniciar sesión (Apple o Google) es lo que respalda tu código de amigo, tu lista de amigos y tus links compartidos, para que lleguen a un celular nuevo — y agregar a un amigo es lo único que te la pide. Al iniciar sesión también eliges tu @usuario — el servidor lo guarda, así te encuentran tus amigos, y puedes cambiarlo más adelante (una vez cada 30 días) — igual que el nombre visible si agregas uno, y un perfil con números que puedes apagar. Cuando ya tienes amigos, una noche terminada les llega salvo que lo desactives — Catchy te pregunta la primera vez que pasa, y cualquier noche se puede dejar de compartir. Tu audio no sale del celular en ningún caso.',
-  'privacy.c5': '<b>Sin SDK de analítica de terceros, sin rastreo, sin historial de por dónde andas.</b> La única vez que Catchy usa tu ubicación es cuando tocas <em lang=\'en\' data-swift="LiveBlock.swift::Pin the venue">Pin the venue</em>, una vez por set, para guardar dónde fue ese set — esas coordenadas nunca salen de tu celular, y el nombre del lugar es lo único que viaja: con un set que compartes, o a un amigo al que dejas sumarse. Nuestro servidor se encarga de conectar — los vínculos entre amigos, las invitaciones, las páginas que compartes — y nunca ve tu audio, ni el nombre de una noche que no compartiste (de una noche privada salen solo los diagnósticos de captura de abajo, como identificadores de catálogo y horas — y una pregunta de Insights cuando tú la haces). Si exportas a Spotify sin tu propia cuenta, va un identificador de instalación aleatorio para que no abusen de esa cuenta compartida; no está atado a nada tuyo y se reinicia si reinstalas.',
-  'privacy.c6': '<b>Diagnósticos de captura, que puedes apagar.</b> Cuando terminas de revisar una noche, la app manda lo mismo que muestra su panel <em lang=\'en\'>Capture health</em>: los contadores y los eventos de reconocimiento ventana por ventana — qué canciones del catálogo se reconocieron y cuándo, como identificadores de catálogo y números. Nunca audio, nunca una grabación, nunca títulos de canciones ni el nombre del set. Está para arreglar cómo se reconocen las noches. Si lo apagas, se borra lo que ya se mandó; si borras una noche, se borran sus datos.',
-  'privacy.c7': '<b>Pregunta por un artista, y esa única pregunta sale del teléfono.</b> Al abrir la ficha de una canción, Catchy inicia la búsqueda de <em lang=\'en\'>✦ Insights</em> para que la respuesta esté lista si tocas: el título y el artista de la canción van a nuestro servidor, y el nombre del artista a MusicBrainz, la enciclopedia musical pública, para confirmar que es el correcto. En cualquier noche, compartida o privada — eres tú preguntando por un artista, no la noche reportándose, y nada más de la noche va con eso.',
+  'privacy.c4': '<b>La cuenta es real, y es para los amigos.</b> Capturar, revisar y tu biblioteca no requieren registro ni contraseña, y abrir un set que alguien comparte contigo no requiere nada. Iniciar sesión (Apple o Google) es lo que respalda tu código de amigo, tu lista de amigos y tus links compartidos, para que lleguen a un celular nuevo — y agregar a un amigo es lo único que te la pide. Al iniciar sesión también eliges tu @usuario — el servidor lo guarda, así te encuentran tus amigos, y puedes cambiarlo más adelante (una vez cada 30 días) — igual que el nombre visible si agregas uno, y un perfil con tus números, el disco que elegiste y tu @instagram si lo agregaste, todo lo cual puedes apagar. Cuando ya tienes amigos, un set terminado les llega salvo que lo desactives — Catchy te pregunta la primera vez que pasa, y cualquier set se puede dejar de compartir. Tu audio no sale del celular en ningún caso.',
+  'privacy.c5': '<b>Sin SDK de analítica de terceros, sin rastreo, sin historial de por dónde andas.</b> La única vez que Catchy usa tu ubicación es cuando tocas <em lang=\'en\'>Pin the venue</em>, una vez por set, para guardar dónde fue ese set — esas coordenadas nunca salen de tu celular, y el nombre del lugar es lo único que viaja: con un set que compartes, o a un amigo al que dejas sumarse. Nuestro servidor se encarga de conectar — los vínculos entre amigos, las invitaciones, las páginas que compartes — y nunca ve tu audio, ni el nombre de una noche que no compartiste (de una noche privada salen solo los diagnósticos de captura de abajo, como identificadores de catálogo y horas — y una pregunta de Insights cuando tú la haces). Si abres una canción en Spotify, va un identificador de instalación aleatorio con esa petición y nada más; no está atado a nada tuyo y se reinicia si reinstalas.',
+  'privacy.c6': '<b>Diagnósticos de captura, que puedes apagar.</b> Cuando terminas de revisar un set, la app manda lo mismo que muestra su panel <em lang=\'en\'>Capture health</em>: los contadores y los eventos de reconocimiento ventana por ventana — qué canciones del catálogo se reconocieron y cuándo, como identificadores de catálogo y números. Nunca audio, nunca una grabación, nunca títulos de canciones ni el nombre del set. Está para arreglar cómo se reconocen los sets. Si lo apagas, se borra lo que ya se mandó; si borras un set, se borran sus datos.',
+  'privacy.c7': '<b>Pregunta por un artista, y esa única pregunta sale del teléfono.</b> Al abrir la ficha de una canción, Catchy inicia la búsqueda de <em lang=\'en\'>✦ Insights</em> para que la respuesta esté lista si tocas: el título y el artista de la canción van a nuestro servidor, y el nombre del artista a MusicBrainz, la enciclopedia musical pública, para confirmar que es el correcto. En cualquier set, compartido o privado — eres tú preguntando por un artista, no el set reportándose, y nada más del set va con eso.',
   'privacy.more': 'La política de privacidad completa →',
 
   'close.h2': 'Pruébala en la próxima.',
