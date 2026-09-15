@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- mocks/privacy.html · public · drawn 2026-07-24 · #221 — the policy registered with App Store Connect -->
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -124,12 +125,6 @@
     the clips above, and the stretches still waiting to be identified when
     you're offline — those go the moment they are, or with the rest when the
     set's window runs out.</li>
-  <li>The one exception is <b>Concert Mode</b> — a per-night option,
-    off unless you turn it on. Turn it on and that night is
-    recorded on this phone so the review can take a second pass at what
-    nothing caught live. The recording never leaves the phone, skips your
-    backups, stops after 4 hours, and deletes itself when you finish the
-    review — or after 7 days if you never do.</li>
   <li>No password. An account is Sign in with Apple or Google — nothing to fill
     in, and no email or phone number we ask you for. It is never needed to
     catch, review, keep your library, or export, and never needed to open a link
@@ -187,11 +182,14 @@
     cannot connect it to a person, and it resets if you reinstall the app.</li>
   <li><b>If you export to Apple Music:</b> the playlist is created in your own
     library, with your permission, on your device.</li>
-  <li><b>If you open Insights on a song or artist:</b> that name goes to our
-    server, which looks it up in public sources (MusicBrainz, Wikipedia,
-    Discogs, Apple's catalog) and writes the short piece you read. The same
-    piece is shared by everyone who asks about that artist — nothing about
-    you, your account, or your night goes with the request.</li>
+  <li><b>When a song's card opens</b>, Catchy asks our server about that artist
+    so the answer is ready if you tap
+    <span data-swift="SongCardSheet.swift::✦ Insights">✦ Insights</span>. The
+    song's title and the artist's name go with that question, and nothing
+    about you, your account, or your night goes with it. The server looks the
+    artist up in public sources (MusicBrainz, Wikipedia, Discogs, Apple's
+    catalog) and the piece it writes is the same one everyone else who asks
+    about that artist reads.</li>
   <li>Song titles are looked up against Apple's public catalog for artwork and
     previews.</li>
 </ul>
@@ -210,11 +208,13 @@
   <li><b>If you claim a @username</b>, the server holds it — it's how friends
     find you. Same for the display name if you add one. You
     are findable by search unless you turn that off in the app; either way,
-    someone finding you only ever sends a request you approve. This is the one
-    place we hold a name, and only because you chose one.</li>
-  <li><b>Your profile</b> carries counters (sets, songs, hours, favourites) and
-    they are visible to friends unless you switch them off, which also deletes
-    what was published. The Top sets you pin ride the profile too — they are
+    someone finding you only ever sends a request you approve. Your @username,
+    and your display name if you add one, are the names we hold — and your
+    Instagram handle if you choose to add that too.</li>
+  <li><b>Your profile</b> carries counters (sets, songs, hours, favourites),
+    the disc you chose, and your Instagram handle if you added one — visible
+    to friends unless you switch your stats off, which also deletes what was
+    published. The Top sets you pin ride the profile too — they are
     nights you already chose to share, so their pages are hosted the same way.
     The audio and the full record of each night stay on your phone.</li>
   <li><b>A set shared with friends</b> — whether it went on its own or you
@@ -232,14 +232,42 @@
     unshared.</li>
   <li><b>If you allow notifications</b>, this phone's push address is stored so
     a night you follow can reach you. Storing it does not send you anything:
-    only following a set makes you a recipient. The pushes carry no songs and
-    no names. Turning off Following in the app removes the address.</li>
+    only following a set makes you a recipient. A push names the friend who
+    acted and the set it is about — for example, “@nacho shared Sunset Set”. A
+    push never carries a song title. The one push about a set you follow
+    changing names nothing at all. Turning off notifications for Catchy in iOS
+    Settings stops the pushes. The stored address is removed when you sign out
+    or delete your account.</li>
   <li><b>Letting friends see you are out</b> is off unless you turn it on for
     that set. They see only that — no venue, no place — and it disappears when
     the set ends. If a friend asks to join you and you accept, the set's venue
     name — whether you typed it or pinned it — goes to that one friend alone
     and dies with the set too.</li>
 </ul>
+
+<h2>How long the server keeps things</h2>
+<p>Capture diagnostics and the per-window recognition events are deleted 180
+  days after they are sent. A shared page is deleted 400 days after the last
+  time you touch it, and every change you make to it restarts that clock. Our
+  request logs are deleted after 30 days and our function logs after 14;
+  neither holds your music. Your sign-in token expires after 90 days.
+  Switching a thing off, unsharing a set, or deleting a night deletes what it
+  produced without waiting for any of these.</p>
+
+<h2>Deleting your account</h2>
+<p>Profile → Settings →
+  <span data-swift="ProfileView.swift::Privacy &amp; FAQ">Privacy &amp; FAQ</span>
+  →
+  <span data-swift="PrivacyDataView.swift::Delete my data from Catchy's server">Delete
+  my data from Catchy's server</span> removes your account, your @username,
+  your profile, your friend connections, your shared pages and your
+  diagnostics. It happens in this order: the app clears what it holds about
+  the server, the server locks the account so nothing can write under it
+  again, then it deletes every row, and your account record last. If a step
+  fails, a sweep finishes the deletion on its own within the hour. Two things
+  survive: the sets, catches and audio on your phone, which are yours and are
+  never touched, and a small record that this account was deleted, which stops
+  an old sign-in from reviving it and expires after 100 days.</p>
 
 <h2>Changes</h2>
 <p>If what the app does with your data changes, this page changes with it.
