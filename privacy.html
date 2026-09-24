@@ -97,7 +97,7 @@
 <p class="sub">The short version: your phone listens, sends a fingerprint rather
   than the sound, and keeps audio only where it will ask you to judge it.
   Accounts are optional, and your audio stays on your device. If you have
-  friends on Catchy, a finished night goes to them unless you switch that
+  friends on Catchy, a finished set goes to them unless you switch that
   off — that and everything else that leaves are listed below.</p>
 
 <h2>What stays on your phone</h2>
@@ -122,7 +122,7 @@
 
 <h2>What never exists</h2>
 <ul>
-  <li>No recording of your night. The microphone feeds a rolling ~20-second
+  <li>No recording of your set. The microphone feeds a rolling ~20-second
     buffer that is continuously overwritten. The only audio written to disk is
     the clips above, and the stretches still waiting to be identified when
     you're offline — those go the moment they are, or with the rest when the
@@ -154,7 +154,7 @@
     song, catch count) pass through Catchy's server on their way to Apple's
     push system so the banner stays fresh. Passing through — our server logs
     counts, never songs.</li>
-  <li><b>If you share a night as a link:</b> a separate, deliberate act —
+  <li><b>If you share a set as a link:</b> a separate, deliberate act —
     nothing ever creates a link on its own. Exactly what the page shows —
     the tracklist, times, and the name you gave the set — is hosted until you
     revoke it. Revoking deletes it.</li>
@@ -165,34 +165,54 @@
     address, and link previews and crawlers are counted apart. The counts
     are deleted 13 months after the day they were made.</li>
   <li><b>After a set ends:</b> capture diagnostics are shared with the
-    developer to fix capture bugs — sent when the set ends, and again after
-    you review it. Three things travel: counters about the capture (windows
-    sent and matched, pauses, battery at the start and end, device model, iOS
-    and app version, and Apple's own crash and exit counts); how the set came
-    out, as counts (how many songs were confident, needed review or stayed
-    unknown, how many you kept, corrected or removed, when the first and last
-    song was recognized, whether you or the app finished the review, and which
-    build and which version of our recognition settings produced the set);
-    and the set's per-window recognition events — which catalog songs were
-    recognized and when, sent as catalog identifiers (Shazam / Apple Music /
-    ISRC) and numbers. Never audio, never a recording, never song titles or
-    artist names, never the set's name. They exist to fix problems and to
-    improve how the app recognizes and labels songs. The switch in Profile →
-    Privacy &amp; FAQ turns it off and deletes what was already sent, and
-    deleting a set deletes that set's rows too.</li>
-  <li><b>While you use the app:</b> usage data — what you do in it: opening
-    it, the screens you visit, and the actions you take (starting and ending
-    a set, opening and finishing a review, exporting and sharing, seeing the
-    Pro offer and starting a trial or a purchase), how long those take,
-    whether they worked or failed and with which error, and how you answered
-    the microphone, notification and location prompts. Each event carries
-    its time, the app build and, when it is about a set, that set's
-    identifier. Never audio, never song or artist names or catalog
-    identifiers, never a set's or a venue's name or anything else you typed,
-    never where you are, never your contacts or who your friends are (an
-    invite is counted, never who it went to). It goes to Catchy's own server
-    and nowhere else, to find and fix problems and to understand which parts
-    of the app people use. Its own switch,
+    developer to fix capture bugs. Sent the next time you open the app after
+    a set ends, again after you review it, and again if the set's numbers
+    change later. A small start record leaves when the microphone starts, and
+    once a day a device summary — Apple's crash and exit counts, your device
+    model and iOS version — leaves whether or not you captured anything.
+    Counters about the capture: when the set started and ended; windows sent,
+    matched and queued; each pause, why it happened and which audio route was
+    in use; and for each hour of the set the battery level, whether the phone
+    was charging, its thermal state and Low Power Mode, how long the capture
+    screen was open, and how much audio was waiting to be recognized. Plus
+    your device model, iOS and app version, and Apple's own crash and exit
+    counts. How the set came out, one row per song and per unknown stretch:
+    how confident the app was, when in the set it was heard, what you did
+    with it in review — kept, skipped, corrected or added by hand, and if the
+    app asked, why you skipped it — and the taps you made on the lock screen
+    or in review, to the half-minute. Never the song's name: a row carries a
+    catalog identifier and numbers. The set's recognition events: for every
+    window the app listened to, whether a song was recognized, which catalog
+    songs were the candidates — up to five, as catalog identifiers and
+    numbers, never names — the loudness and noise measures the app decided
+    on, and whether the phone was on Wi-Fi or cellular at the time. Never
+    audio, never a recording, never song titles or artist names, never the
+    set's name. They exist to fix problems and to improve how the app
+    recognizes and labels songs. The switch in Profile → Privacy &amp; FAQ
+    turns it off and deletes what was already sent, and deleting a set
+    deletes that set's rows too.</li>
+  <li><b>While you use the app:</b> usage data. What you do in the app:
+    opening it, and the actions you take — starting and ending a set;
+    opening, finishing or leaving a review; playing a clip; searching for a
+    song by hand; exporting and sharing; opening a set a friend shared;
+    seeing the Pro offer and starting a trial or a purchase. How long those
+    take, whether they worked or failed and with which error, and how you
+    answered the microphone, notification and location prompts. Each event
+    carries its time, a number for the app session it happened in and, when
+    it is about a set, that set's identifier. Each batch carries the app
+    build, your device model and iOS version, the recognition-settings
+    label, and whether your
+    "<span data-swift="PrivacyDataView.swift::Share finished sets with friends">Share finished sets with friends</span>"
+    and
+    "<span data-swift="PrivacyDataView.swift::Share capture diagnostics">Share capture diagnostics</span>"
+    switches are on. The local hour a set started and a review opened is
+    sent too, with the local date and the weekday the set started. Never
+    audio, never song or artist names or catalog identifiers, never a set's
+    or a venue's name or anything else you typed, never where you are, never
+    your contacts or who your friends are (an invite is counted, never who
+    it went to). It goes to Catchy's own server and nowhere else, to find
+    and fix problems and to understand which parts of the app people use.
+    Its own switch,
     <span data-swift="WhatCatchyRecordsView.swift::Share usage data">Share usage data</span>
     in Profile → Privacy &amp; FAQ, is on to begin with; turning it off
     stops it and deletes what was already sent, and deleting a set deletes
@@ -219,7 +239,7 @@
     so the answer is ready if you tap
     <span data-swift="SongCardSheet.swift::✦ Insights">✦ Insights</span>. The
     song's title and the artist's name go with that question, and nothing
-    about you, your account, or your night goes with it. The server looks the
+    about you, your account, or your set goes with it. The server looks the
     artist up in public sources (MusicBrainz, Wikipedia, Discogs, Apple's
     catalog) and the piece it writes is the same one everyone else who asks
     about that artist reads.</li>
@@ -229,10 +249,10 @@
 
 <h2>Friends and your profile — what your friends see</h2>
 <ul>
-  <li><b>When a night ends it goes to your friends</b> on its own: the
+  <li><b>When a set ends it goes to your friends</b> on its own: the
     tracklist, the times, and what you called the set, in their Friends tab.
     That is a switch in the app, on to begin with; the first time it happens
-    Catchy stops and asks, and you can stop sharing any single night from its
+    Catchy stops and asks, and you can stop sharing any single set from its
     own menu. With no account, or with no friends, there is nobody for this to
     reach and nothing is sent.</li>
   <li><b>Adding a friend</b> just links two random IDs on the server — no
@@ -248,8 +268,8 @@
     the disc you chose, and your Instagram handle if you added one — visible
     to friends unless you switch your stats off, which also deletes what was
     published. The Top sets you pin ride the profile too — they are
-    nights you already chose to share, so their pages are hosted the same way.
-    The audio and the full record of each night stay on your phone.</li>
+    sets you already chose to share, so their pages are hosted the same way.
+    The audio and the full record of each set stay on your phone.</li>
   <li><b>A set shared with friends</b> — whether it went on its own or you
     shared it yourself — puts exactly what the shared page shows (the
     tracklist, times, and the set's name) in their app until you unshare it.
@@ -260,11 +280,11 @@
   <li><b>Reactions and song IDs</b> on a shared set live on the server while it
     is shared: a tap, or the title and artist a friend typed. Anyone who can
     open a shared set sees who reacted to it — names, never counts — and your
-    @username can appear there to people who follow the same night without
+    @username can appear there to people who follow the same set without
     being your friend. Reactions disappear with the set when it is
     unshared.</li>
   <li><b>If you allow notifications</b>, this phone's push address is stored so
-    a night you follow can reach you. Storing it does not send you anything:
+    a set you follow can reach you. Storing it does not send you anything:
     only following a set makes you a recipient. A push names the friend who
     acted and the set it is about — for example, “@nacho shared Sunset Set”. A
     push never carries a song title. The one push about a set you follow
@@ -280,14 +300,15 @@
 
 <h2>How long the server keeps things</h2>
 <p>Capture diagnostics, the per-window recognition events and usage data are
-  deleted 13 months after they are sent. Before that, they are added into
+  deleted 13 months after they were last sent — a review months later sends
+  the set again and restarts its clock. Before that, they are added into
   running totals — counts, rates and averages per day and per app version —
   that carry nothing identifying you or a set, and no total is kept for a
   group small enough to point at one person. A shared page is deleted 400 days after the last
   time you touch it, and every change you make to it restarts that clock. Our
   request logs are deleted after 30 days and our function logs after 14;
   neither holds your music. Your sign-in token expires after 90 days.
-  Switching a thing off, unsharing a set, or deleting a night deletes what it
+  Switching a thing off, unsharing a set, or deleting a set deletes what it
   produced without waiting for any of these.</p>
 
 <h2>Deleting your account</h2>
