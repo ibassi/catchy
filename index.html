@@ -4,6 +4,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catchy — know every song that played</title>
 <meta name="description" content="Catchy listens along while music is playing and names what it hears — honestly, including what it missed — so the whole set comes home as a playlist you can keep and share.">
+<link rel="canonical" href="https://joincatchy.com/">
+<link rel="icon" type="image/png" sizes="180x180" href="art/catchy-icon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="art/catchy-icon-180.png">
+<meta property="og:site_name" content="Catchy">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://joincatchy.com/">
+<meta property="og:title" content="Catch a song, or the whole set.">
+<meta property="og:description" content="Catchy listens along while music is playing and names what it hears — honestly, including what it missed — so the whole set comes home as a playlist you can keep and share.">
+<meta property="og:image" content="https://joincatchy.com/art/catchy-og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta property="og:image:alt" content="The Catchy app icon: a violet disc inside two rings.">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebSite", "name": "Catchy", "alternateName": ["Catchy: Live Music Captured", "joincatchy.com"], "url": "https://joincatchy.com/"}
+</script>
 
 
 <style>
@@ -23,6 +40,8 @@
     --surface: rgba(255, 255, 255, 0.075);
     --surface-raised: rgba(255, 255, 255, 0.13);
     --line: rgba(255, 255, 255, 0.09);
+    --rail-unnamed: rgba(255, 255, 255, 0.20);
+    --rail-gap: rgba(255, 255, 255, 0.10);
     --radius-card: 20px;
     --radius-cover: 14px;
     --radius-art: 12px;
@@ -224,11 +243,6 @@
   @media (max-width: 399px) { .phone { zoom: .85; width: 390px; } }
   @media (max-width: 374px) { .phone { zoom: .80; width: 390px; } }
   @media (max-width: 340px) { .phone { zoom: .70; width: 390px; } }
-  .island {
-    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-    width: 118px; height: 32px; border-radius: 99px;
-    background: #000; border: 1px solid rgba(255,255,255,.07); z-index: 30;
-  }
   .statusbar {
     height: 54px; flex-shrink: 0; display: flex; align-items: flex-end; justify-content: space-between;
     padding: 0 30px 4px; font-size: 14px; font-weight: 600;
@@ -394,7 +408,6 @@
   .trail .tr2 .keep { color: var(--confident); }
   .trail .tr2 .undone { color: var(--faint); font-weight: 500; }
   .cliprow { display: flex; gap: var(--space-s); padding: 0 0 var(--space-s) 46px; }
-
   .art {
     width: 44px; height: 44px; border-radius: var(--radius-art); flex-shrink: 0;
     background: color-mix(in srgb, var(--accent) 15%, transparent);
@@ -631,7 +644,7 @@
       the bits it couldn't. Afterwards the whole thing is yours: a tracklist,
       a timeline of what played, and a card you can send your friends.
     </p>
-    <p class="versus" data-t="hero.versus">Shazam catches <b>one song</b>. Catchy catches <b>everything that played</b>.</p>
+        <p class="versus" data-t="hero.versus">Catch <b>a song</b>, or <b>the whole set</b>.</p>
     <p class="versus-sub" data-t="hero.pro"><b>Capturing a set, reviewing it and sharing it stay free. Always.</b>
       Catchy Pro adds Insights, Apple Music export and capture with no signal.</p>
 
@@ -646,7 +659,7 @@
       </a>
       <a class="step" href="#playlist">
         <div class="n">3</div><div class="t" data-t="step3.t">Set</div>
-        <div class="d" data-t="step3.d">the whole night, in order</div><div class="go" data-t="step.go">see it →</div>
+        <div class="d" data-t="step3.d">the whole set, in order</div><div class="go" data-t="step.go">see it →</div>
       </a>
       <a class="step" href="#share">
         <div class="n">4</div><div class="t" data-t="step4.t">Share</div>
@@ -661,7 +674,7 @@
       <a href="#privacy" data-t="more.privacy">What it keeps</a>
     </nav>
 
-    <a class="cta" href="https://testflight.apple.com/join/hEEk8fKf" data-t="cta">Join the alpha on TestFlight →</a>
+    <a class="cta" href="https://testflight.apple.com/join/hEEk8fKf" data-t="cta">Join Catchy →</a>
     <p class="cta-note" data-t="cta.note">iPhone · iOS 18 or newer · nothing to sign up for</p>
   </section>
 
@@ -678,7 +691,6 @@
     </div>
     <div class="stage">
       <div class="phone" lang="en">
-        <div class="island"></div>
         <div class="statusbar"><span>1:34</span><span class="right">◧ 71%</span></div>
         <div class="screen">
 
@@ -713,19 +725,19 @@
                     <div class="card rows">
             <div class="row">
               <span class="sline g"></span>
-              <div class="art" style="background-image: url(art/onb-inthisbih.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">In This Bih'</div><div class="s">Chris Lorenzo &amp; Kah-Lo</div></div>
               <span class="stamp">1:31 AM</span>
             </div>
             <div class="row">
               <span class="sline a"></span>
-              <div class="art" style="background-image: url(art/onb-palm.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">palm of my hands (Odd Mob Remix)</div><div class="s">John Summit &amp; venbee</div></div>
               <span class="stamp">1:26 AM</span>
             </div>
             <div class="row">
               <span class="sline g"></span>
-              <div class="art" style="background-image: url(art/onb-carcrash.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">car crash</div><div class="s">jigitz</div></div>
               <span class="stamp">1:19 AM</span>
             </div>
@@ -793,7 +805,6 @@
     </div>
     <div class="stage">
       <div class="phone" lang="en">
-        <div class="island"></div>
         <div class="statusbar"><span>11:06</span><span class="right">◧ 96%</span></div>
         <div class="screen with-tabs">
 
@@ -845,7 +856,7 @@
           <div class="card rows">
             <div class="row">
               <span class="sline a"></span>
-              <div class="art" style="background-image: url(art/onb-carcrash.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">car crash</div><div class="s">jigitz</div></div>
               <div class="trail">
                 <div class="tr1"><span class="stamp">1:19 AM</span></div>
@@ -867,7 +878,7 @@
             </div>
                         <div class="row muted">
               <span class="sline" style="background: var(--faint);"></span>
-              <div class="art" style="background-image: url(art/onb-wakemeup.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">Wake Me Up</div><div class="s">Avicii</div></div>
               <div class="trail">
                 <div class="tr1"><span class="stamp">11:58 PM</span></div>
@@ -884,13 +895,13 @@
           <div class="card rows">
             <div class="row">
               <span class="sline g"></span>
-              <div class="art" style="background-image: url(art/onb-inthisbih.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">In This Bih'</div><div class="s">Chris Lorenzo &amp; Kah-Lo</div></div>
               <span class="circ on">★</span><span class="stamp">1:31 AM</span>
             </div>
             <div class="row">
               <span class="sline g"></span>
-              <div class="art" style="background-image: url(art/onb-palm.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">palm of my hands (Odd Mob Remix)</div><div class="s">John Summit &amp; venbee</div></div>
               <span class="circ">☆</span><span class="stamp">12:58 AM</span>
             </div>
@@ -960,11 +971,10 @@
          straight to your own Apple Music library</em>, once the set is
          reviewed. That one is part of Catchy Pro. Every song you keep lands
          in your library on its own, with the set it came from still attached.
-         The ★ is for the ones that were the night.</p>
+         The ★ is for the ones that made the set.</p>
     </div>
     <div class="stage">
       <div class="phone" lang="en">
-        <div class="island"></div>
         <div class="statusbar"><span>11:15</span><span class="right">◧ 94%</span></div>
         <div class="screen with-tabs">
 
@@ -997,8 +1007,8 @@
 
                               <div class="actmenu" style="top:60px; width:200px;">
             <div class="r">Add a song<span>+</span></div>
-            <div class="r">Export to Apple Music</div>
-            <div class="r">Share set with friends<span>↑</span></div>
+            <div class="r">Send playlist to Apple Music</div>
+            <div class="r">Send in Catchy<span>↑</span></div>
           </div>
 
                     <div class="timeline" style="position:relative; margin-top:calc(var(--space-l) + 52px);">
@@ -1025,25 +1035,25 @@
           <div class="card rows">
             <div class="row">
               <span class="idx">1</span>
-              <div class="art" style="background-image: url(art/onb-wakemeup.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">Wake Me Up</div><div class="s">Avicii</div></div>
               <span class="circ on">★</span><span class="stamp">11:58 PM</span>
             </div>
             <div class="row">
               <span class="idx">2</span>
-              <div class="art" style="background-image: url(art/onb-palm.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">palm of my hands (Odd Mob Remix)</div><div class="s">John Summit &amp; venbee</div></div>
               <span class="circ">☆</span><span class="stamp">12:58 AM</span>
             </div>
             <div class="row">
               <span class="idx">3</span>
-              <div class="art" style="background-image: url(art/onb-carcrash.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">car crash</div><div class="s">jigitz</div></div>
               <span class="circ">☆</span><span class="stamp">1:19 AM</span>
             </div>
             <div class="row">
               <span class="idx">4</span>
-              <div class="art" style="background-image: url(art/onb-inthisbih.jpg);"></div>
+              <div class="art"></div>
               <div class="meta"><div class="t">In This Bih'</div><div class="s">Chris Lorenzo &amp; Kah-Lo</div></div>
               <span class="circ on">★</span><span class="stamp">1:31 AM</span>
             </div>
@@ -1130,7 +1140,7 @@
         an Instagram story.</li>
       <li data-t="share.c2"><b>It survives midnight.</b> A set that runs past 12 belongs to the
         day it started on — in your library, in the list, in the name. The card
-        names both dates, so nobody has to guess which night it was.</li>
+        names both dates, so nobody has to guess which set it was.</li>
       <li data-t="share.c3"><b>The card is made on your phone</b>, and it goes nowhere until you
         send it.</li>
     </ul>
@@ -1150,7 +1160,6 @@
       <div class="pane">
         <div class="pane-tag" data-t="friends.tag.tab">the friends tab</div>
         <div class="phone" lang="en">
-          <div class="island"></div>
           <div class="statusbar"><span>6:20</span><span class="right">◧ 84%</span></div>
           <div class="screen with-tabs">
             <div style="display:flex; align-items:center; justify-content:space-between; padding-top:8px;">
@@ -1234,7 +1243,6 @@
       <div class="pane">
         <div class="pane-tag" data-t="friends.tag.bell">the bell</div>
         <div class="phone" lang="en">
-          <div class="island"></div>
           <div class="statusbar"><span>6:21</span><span class="right">◧ 84%</span></div>
           <div class="screen with-tabs">
                         <div style="display:flex; align-items:center; justify-content:space-between; padding-top:8px; opacity:.28;">
@@ -1364,7 +1372,6 @@
       <div class="pane">
         <div class="pane-tag" data-t="you.tag.profile">your profile</div>
         <div class="phone" lang="en">
-          <div class="island"></div>
           <div class="statusbar"><span>6:21</span><span class="right">◧ 84%</span></div>
           <div class="screen with-tabs">
             <div class="navbar">
@@ -1401,7 +1408,7 @@
             <div class="section-label"><span class="lab">Pinned</span></div>
             <div class="card rows">
               <div class="row">
-                <div class="art" style="background-image: url(art/onb-inthisbih.jpg);"></div>
+                <div class="art"></div>
                 <div class="meta"><div class="t">Public Records</div><div class="s">Sat, Jul 18 · 3h 50m · 35 songs</div></div>
                 <span class="t-time">Unpin</span>
               </div>
@@ -1454,7 +1461,6 @@
       <div class="pane">
         <div class="pane-tag" data-t="you.tag.settings">settings</div>
         <div class="phone" lang="en">
-          <div class="island"></div>
           <div class="statusbar"><span>6:22</span><span class="right">◧ 84%</span></div>
           <div class="screen with-tabs">
             <div class="navbar">
@@ -1474,7 +1480,7 @@
             <div>
               <div class="door">
                 <span class="g">◔</span>
-                <span class="w">Notifications &amp; timing<small>nudges, reminders, clip retention</small></span>
+                <span class="w">Notifications &amp; timing<small>nudges, reminders, the auto-end timer</small></span>
                 <span class="chev">›</span>
               </div>
               <div class="door">
@@ -1601,7 +1607,7 @@
           unless you switch that off — Catchy asks the first time it happens,
           and any set can be unshared. Your audio never leaves either way.</li>
         <li data-t="privacy.c5"><b>No analytics SDK, no tracking, no trail of where you go.</b>
-          The only time Catchy uses your location is when you tap <em data-swift="LiveBlock.swift::Pin the venue">Pin the venue</em>, once
+          The only time Catchy uses your location is when you tap <em>Pin the venue</em>, once
           per set, to save where the set was. Your exact coordinates never leave your
           phone. What travels is the venue's name and an approximate location — a map
           cell about 150 m across — and only where the set itself goes: with a set you
@@ -1651,7 +1657,7 @@
       <em>&ldquo;Every set becomes a playlist.&rdquo;</em> and the fastest way to
       make that true is to use it and tell us what broke.</p>
     <p style="margin-top:22px;">
-      <a class="cta" href="https://testflight.apple.com/join/hEEk8fKf" data-t="cta">Join the alpha on TestFlight →</a>
+      <a class="cta" href="https://testflight.apple.com/join/hEEk8fKf" data-t="cta">Join Catchy →</a>
     </p>
     <p class="cta-note" data-t="cta.note">iPhone · iOS 18 or newer · nothing to sign up for</p>
   </section>
@@ -1688,12 +1694,12 @@ const ES = {
   'hero.eyebrow': 'alfa para amigos y familia · en TestFlight',
   'hero.h1': 'Descubre cada canción que sonó.',
   'hero.lede': 'Venga la música de donde venga — un DJ, un bar, una fiesta, el aux de alguien más — abre <strong>Catchy</strong> cuando empieza la música. Se queda escuchando contigo y va nombrando lo que oye, hora tras hora, y es honesta con lo que se le escapó. Después todo eso es tuyo: la lista de canciones, una línea de tiempo de lo que sonó, y una tarjeta para mandarles a tus amigos.',
-  'hero.versus': 'Shazam captura <b>una canción</b>. Catchy captura <b>todo lo que sonó</b>.',
+  'hero.versus': 'Captura <b>una canción</b>, o <b>el set entero</b>.',
   'hero.pro': '<b>Capturar un set, revisarlo y compartirlo son gratis. Siempre.</b> <em lang=\'en\'>Capturing a set, reviewing it and sharing it stay free. Always.</em> Catchy Pro agrega Insights, exportar a Apple Music y capturar sin señal.',
 
   'step1.t': 'Captura', 'step1.d': 'un toque cuando empieza la música',
   'step2.t': 'Revisa',  'step2.d': 'resuelve las dudas cuando quieras',
-  'step3.t': 'El set', 'step3.d': 'toda la noche, en orden',
+  'step3.t': 'El set', 'step3.d': 'el set entero, en orden',
   'step4.t': 'Comparte', 'step4.d': 'una tarjeta del set, para el grupo',
   'step.go': 'verlo →',
 
@@ -1701,7 +1707,7 @@ const ES = {
   'more.you': 'Tu perfil',
   'more.pro': 'Qué agrega Pro',
   'more.privacy': 'Qué guarda',
-  'cta': 'Únete a la alfa en TestFlight →',
+  'cta': 'Únete a Catchy →',
   'cta.note': 'iPhone · iOS 18 o superior · no hay que registrarse',
 
   'catch.ctx': 'paso <b>1</b> · mientras suena la música',
@@ -1721,7 +1727,7 @@ const ES = {
 
   'playlist.ctx': 'paso <b>3</b> · el set, guardado',
   'playlist.h2': 'Todo lo que sonó, en orden.',
-  'playlist.p': 'Cada sesión se convierte en un set: la lista de canciones en orden, una línea de tiempo por la que puedes arrastrar el dedo para ver qué sonaba en cada momento, y el menú ⋯ que lleva los verbos como palabras — entre ellos mandar el set directo a tu propia biblioteca de Apple Music, cuando el set ya está revisado. Ese es parte de Catchy Pro. Cada canción que dejas queda sola en tu biblioteca, con el set del que salió todavía pegado. La ★ es para las que fueron la noche.',
+  'playlist.p': 'Cada sesión se convierte en un set: la lista de canciones en orden, una línea de tiempo por la que puedes arrastrar el dedo para ver qué sonaba en cada momento, y el menú ⋯ que lleva los verbos como palabras — entre ellos mandar el set directo a tu propia biblioteca de Apple Music, cuando el set ya está revisado. Ese es parte de Catchy Pro. Cada canción que dejas queda sola en tu biblioteca, con el set del que salió todavía pegado. La ★ es para las que hicieron el set.',
   'playlist.c1': '<b>Exportar a Apple Music, a tu propia biblioteca.</b> <em lang=\'en\'>Send a set straight to your own Apple Music library.</em> Catchy te pide permiso una vez, y necesita una suscripción a Apple Music en el celular. Es parte de Catchy Pro.',
   'playlist.c2': '<b>Spotify es un toque, no una cuenta más.</b> Cualquier canción o artista se abre en Spotify — nada que conectar, nada donde iniciar sesión.',
   'playlist.c3': '<b>✦ Insights — la historia detrás de la canción.</b>&nbsp;<span class="pro">Pro</span> Toca cualquier cosa que capturaste y Catchy te cuenta <em lang=\'en\'>who the artist is, where the song came from, and what to hear next</em> — quién es el artista, de dónde salió la canción y qué escuchar después. Tres <span>gratis al mes</span>; sin límite con <b>Catchy Pro</b>.',
@@ -1732,7 +1738,7 @@ const ES = {
   'share.h2': 'La prueba de que estuviste.',
   'share.p': 'Cada set genera una tarjeta — el lugar, la duración, la línea de tiempo de lo que sonó, tu calificación, y cuántos momentos quedaron sin resolver. <strong>Manda la tarjeta, o manda el link</strong> — el link abre el set entero para cualquiera, sin app y sin cuenta. La tarjeta hasta lleva la dirección impresa, así que una captura de pantalla también es una puerta. Como una carrera de Strava, pero de música.',
   'share.c1': '<b>Tres formas de compartir</b> — <em lang=\'en\'>share the card</em>, <em lang=\'en\'>share the link</em>, o directo a una historia de Instagram.',
-  'share.c2': '<b>Sobrevive a la medianoche.</b> Un set que cruza las 12 sigue perteneciendo al día en que empezó — en tu biblioteca, en la lista, en el nombre. La tarjeta nombra las dos fechas, para que nadie tenga que adivinar qué noche fue.',
+  'share.c2': '<b>Sobrevive a la medianoche.</b> Un set que cruza las 12 sigue perteneciendo al día en que empezó — en tu biblioteca, en la lista, en el nombre. La tarjeta nombra las dos fechas, para que nadie tenga que adivinar qué set fue.',
   'share.c3': '<b>La tarjeta se genera en tu celular</b>, y no va a ningún lado hasta que la mandas.',
 
   'friends.ctx': '<b>con quienes estuvieron ahí</b> · en la app hoy',
@@ -1768,7 +1774,7 @@ const ES = {
   'privacy.c2': '<b>Solo se guarda audio de lo que te vamos a pedir que decidas tú</b> — un clip corto por cada canción de la que no estuvo segura, y por cada momento que no pudo nombrar. Quedan en tu celular, se borran solos cuando terminas de revisar el set (o a los 30 días si nunca lo haces), y salen del dispositivo únicamente si tú decides compartir uno. La única excepción es un clip al que le tocas <em lang=\'en\'>Keep clip</em>: ese queda tuyo hasta que lo borres.',
   'privacy.c3': '<b>Cuando no se puede identificar en el momento</b> — sin señal, o con el servicio caído — ese tramo de audio espera en el celular hasta que se pueda resolver, y se borra apenas se resuelve. Ese es el precio de no perderlo.',
   'privacy.c4': '<b>La cuenta es real, y es para los amigos.</b> Capturar, revisar y tu biblioteca no requieren registro ni contraseña, y abrir un set que alguien comparte contigo no requiere nada. Iniciar sesión (Apple o Google) es lo que respalda tu código de amigo, tu lista de amigos y tus links compartidos, para que lleguen a un celular nuevo — y agregar a un amigo es lo único que te la pide. Al iniciar sesión también eliges tu @usuario — el servidor lo guarda, así te encuentran tus amigos, y puedes cambiarlo más adelante (una vez cada 30 días) — igual que el nombre visible si agregas uno, y un perfil con tus números, el disco que elegiste y tu @instagram si lo agregaste, todo lo cual puedes apagar. Cuando ya tienes amigos, un set terminado les llega salvo que lo desactives — Catchy te pregunta la primera vez que pasa, y cualquier set se puede dejar de compartir. Tu audio no sale del celular en ningún caso.',
-  'privacy.c5': '<b>Sin SDK de analítica de terceros, sin rastreo, sin historial de por dónde andas.</b> La única vez que Catchy usa tu ubicación es cuando tocas <em lang=\'en\' data-swift="LiveBlock.swift::Pin the venue">Pin the venue</em>, una vez por set, para guardar dónde fue ese set. Tus coordenadas exactas nunca salen de tu celular. Lo que viaja es el nombre del lugar y una ubicación aproximada — una celda del mapa de unos 150 m de lado — y solo por donde va el set mismo: con un set que compartes, o a un amigo al que dejas sumarse. La celda está para que los celulares de amigos que están en el mismo lugar puedan unirse en un mismo set compartido. Nada más sobre dónde estás sale de tu celular. Nuestro servidor se encarga de conectar — los vínculos entre amigos, las invitaciones, las páginas que compartes — y nunca ve tu audio, ni el nombre de un set que no compartiste (de un set privado salen solo los diagnósticos y los datos de uso de abajo, como identificadores de catálogo, conteos y horas — y una pregunta de Insights cuando tú la haces). Si abres una canción en Spotify, va un identificador de instalación aleatorio con esa petición y nada más; no está atado a nada tuyo y se reinicia si reinstalas.',
+  'privacy.c5': '<b>Sin SDK de analítica de terceros, sin rastreo, sin historial de por dónde andas.</b> La única vez que Catchy usa tu ubicación es cuando tocas <em lang=\'en\'>Pin the venue</em>, una vez por set, para guardar dónde fue ese set. Tus coordenadas exactas nunca salen de tu celular. Lo que viaja es el nombre del lugar y una ubicación aproximada — una celda del mapa de unos 150 m de lado — y solo por donde va el set mismo: con un set que compartes, o a un amigo al que dejas sumarse. La celda está para que los celulares de amigos que están en el mismo lugar puedan unirse en un mismo set compartido. Nada más sobre dónde estás sale de tu celular. Nuestro servidor se encarga de conectar — los vínculos entre amigos, las invitaciones, las páginas que compartes — y nunca ve tu audio, ni el nombre de un set que no compartiste (de un set privado salen solo los diagnósticos y los datos de uso de abajo, como identificadores de catálogo, conteos y horas — y una pregunta de Insights cuando tú la haces). Si abres una canción en Spotify, va un identificador de instalación aleatorio con esa petición y nada más; no está atado a nada tuyo y se reinicia si reinstalas.',
   'privacy.c6': '<b>Diagnósticos y datos de uso, cada uno con su propio interruptor.</b> Cuando termina un set, de nuevo después de revisarlo y otra vez si cambian sus números, la app manda los diagnósticos de captura: contadores de la captura y de cada una de sus horas, una fila por canción con lo que hiciste con ella en la revisión, y cada ventana de reconocimiento — identificadores de catálogo y números, más el modelo de tu celular y su versión de iOS. Un pequeño registro de inicio sale cuando se abre el micrófono, y un resumen del dispositivo una vez al día. Mientras la usas, la app manda datos de uso: lo que haces en ella, como conteos y horas, con la versión de la app, el modelo de tu celular y su versión de iOS. Nunca audio, nunca una grabación, nunca títulos de canciones, nombres de sets ni nada que hayas escrito. Los dos están para arreglar problemas y mejorar la app. Si apagas cualquiera (<em lang=\'en\'>Share usage data</em> es el segundo), se borra lo que mandó; si borras un set, se borran sus datos.',
   'privacy.c7': '<b>Pregunta por un artista, y esa única pregunta sale del teléfono.</b> Al abrir la ficha de una canción, Catchy inicia la búsqueda de <em lang=\'en\'>✦ Insights</em> para que la respuesta esté lista si tocas: el título y el artista de la canción van a nuestro servidor, y el nombre del artista a MusicBrainz, la enciclopedia musical pública, para confirmar que es el correcto. En cualquier set, compartido o privado — eres tú preguntando por un artista, no el set reportándose, y nada más del set va con eso.',
   'privacy.more': 'La política de privacidad completa →',
