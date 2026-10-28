@@ -240,12 +240,15 @@
     library, with your permission, on your device.</li>
   <li><b>When a song's card opens</b>, Catchy asks our server about that artist
     so the answer is ready if you tap
-    <span data-swift="SongCardSheet.swift::✦ Insights">✦ Insights</span>. The
-    song's title and the artist's name go with that question, and nothing
-    about you, your account, or your set goes with it. The server looks the
+    <span data-swift="SongCardSheet.swift::Insights">Insights</span>. The
+    song's title and the artist's name go with that question under your
+    sign-in, which is how the server counts your reads; nothing about your
+    set goes with it. The server looks the
     artist up in public sources (MusicBrainz, Wikipedia, Discogs, Apple's
     catalog) and the piece it writes is the same one everyone else who asks
-    about that artist reads.</li>
+    about that artist reads. For similar songs and tour dates it also asks
+    ListenBrainz and Ticketmaster, sending only the song's identifiers and
+    the artist's name, never anything about you.</li>
   <li>Song titles are looked up against Apple's public catalog for artwork and
     previews.</li>
 </ul>
@@ -283,7 +286,7 @@
   <li><b>Adding friends to a set</b> sends each one an invitation, as IDs only;
     accepting places that set in their app. Declining leaves no trace.</li>
   <li><b>Reactions and song IDs</b> on a shared set live on the server while it
-    is shared: a tap, or the title and artist a friend typed. Anyone who can
+    is shared: a tap, or the title, artist and link a friend typed. Anyone who can
     open a shared set sees who reacted to it — names, never counts — and your
     @username can appear there to people who follow the same set without
     being your friend. Reactions disappear with the set when it is
